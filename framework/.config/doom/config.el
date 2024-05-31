@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
+;; Place your privatonfiguration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
 
@@ -75,3 +75,147 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;;Beacon shows where the cursor is
+(setq beacon-mode t)
+
+;; Quicker window management keybindings
+(bind-key* "C-j" #'evil-window-down)
+(bind-key* "C-k" #'evil-window-up)
+(bind-key* "C-h" #'evil-window-left)
+(bind-key* "C-l" #'evil-window-right)
+(bind-key* "C-q" #'evil-window-delete)
+(bind-key* "M-q" #'kill-current-buffer)
+(bind-key* "M-w" #'+workspace/close-window-or-workspace)
+(bind-key* "M-n" #'next-buffer)
+(bind-key* "M-p" #'previous-buffer)
+(bind-key* "M-z" #'+vterm/toggle)
+(bind-key* "M-e" #'+eshell/toggle)
+(bind-key* (kbd "M-<return>") #'+vterm/here)
+(bind-key* (kbd "M-E") #'+eshell/here)
+
+;; Disables custom.el
+(setq custom-file null-device)
+
+
+(setq scroll-margin 30)
+(setq hscroll-margin 10)
+
+;; Requires for faster loading
+(require 'org-agenda)
+(require 'dired)
+
+;; Garbage collection to speed things up
+(add-hook 'after-init-hook
+          #'(lambda ()
+              (setq gc-cons-threshold (* 100 1024 1024))))
+(add-hook 'focus-out-hook 'garbage-collect)
+(run-with-idle-timer 5 t 'garbage-collect)
+
+;; Enable autorevert globally so that buffers update when files change on disk.
+;; Very useful when used with file syncing (i.e. syncthing)
+(setq global-auto-revert-mode nil)
+(setq auto-revert-use-notify t)
+
+;; Neotree fun
+(defun neotree-snipe-dir ()
+  (interactive)
+  (if (projectile-project-root)
+      (neotree-dir (projectile-project-root))
+    (neotree-dir (file-name-directory (file-truename (buffer-name))))
+    )
+  )
+
+(map! :leader :desc "Open neotree here" "o n" #'neotree-snipe-dir
+      :desc "Hide neotree" "o N" #'neotree-hide)
+
+
+;; Set default org directory
+(setq org-directory "~/.Org")
+
+(remove-hook 'after-save-hook #'+literate|recompile-maybe)
+(set-company-backend! 'org-mode nil)
+
+;; Automatically show images but manually control their size
+(setq org-startup-with-inline-images t
+      org-image-actual-width nil)
+
+(require 'evil-org)
+(require 'evil-org-agenda)
+(add-hook 'org-mode-hook 'evil-org-mode -100)
+
+;; Top-level headings should be bigger!
+(custom-set-faces!
+  '(org-level-1 :inherit outline-1 :height 1.3)
+  '(org-level-2 :inherit outline-2 :height 1.25)
+  '(org-level-3 :inherit outline-3 :height 1.2)
+  '(org-level-4 :inherit outline-4 :height 1.1)
+  '(org-level-5 :inherit outline-5 :height 1.1)
+  '(org-level-6 :inherit outline-6 :height 1.05)
+  '(org-level-7 :inherit outline-7 :height 1.05)
+  )
+
+(after! org (org-eldoc-load))
+
+(with-eval-after-load 'org (global-org-modern-mode))
+
+;; Add frame borders and window dividers
+(modify-all-frames-parameters
+ '((right-divider-width . 5)
+   (internal-border-width . 5)))
+(dolist (face '(window-divider
+                window-divider-first-pixel
+                window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+(set-face-background 'fringe (face-attribute 'default :background))
+
+(setq
+ ;; Edit settings
+ org-auto-align-tags nil
+ org-tags-column 0
+ org-catch-invisible-edits 'show-and-error
+ org-special-ctrl-a/e t
+ org-insert-heading-respect-content t
+
+ ;; Org styling, hide markup etc.
+ org-hide-emphasis-markers t
+ org-pretty-entities t
+ org-ellipsis "…")
+
+(setq-default line-spacing 0)
+
+                                        ; Automatic table of contents is nice
+(if (require 'toc-org nil t)
+    (progn
+      (add-hook 'org-mode-hook 'toc-org-mode)
+      (add-hook 'markdown-mode-hook 'toc-org-mode))
+  (warn "toc-org not found"))
+
+;;---- this block from http://fgiasson.com/blog/index.php/2016/06/21/optimal-emacs-settings-for-org-mode-for-literate-programming/ ----;;
+;; Tangle Org files when we save them
+(defun tangle-on-save-org-mode-file()
+  (when (string= (message "%s" major-mode) "org-mode")
+    (org-babel-tangle)))
+
+(add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
+;; ---- end block ---- ;;
+
+;; Better org table editing
+;; This breaks multiline visual block edits
+;;(setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
+;; t))
+;;(setq org-table-automatic-realign nil)
+
+;; Better for org source blocks
+(setq electric-indent-mode nil)
+(setq org-src-window-setup 'current-window)
+(set-popup-rule! "^\\*Org Src"
+  :side 'top'
+  :size 0.9)
+
+
+(require 'org-download)
+
+;; drag-and-drop to `dired`
+(add-hook 'dired-mode-hook 'org-download-enable)
