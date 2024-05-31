@@ -24,3 +24,22 @@ blue    = '#f38d70'
 magenta = '#a8a9eb'
 cyan    = '#85dacc'
 white   = '#fff1f3'
+
+[font]
+size = 9.0
+
+[font.bold]
+family = "hack"
+style = "Bold"
+
+[font.bold_italic]
+family = "hack"
+style = "Bold Italic"
+
+[font.italic]
+family = "hack"
+style = "Italic"
+
+[font.normal]
+family = "hack"
+style = "Regular"
