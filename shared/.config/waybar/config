@@ -17,6 +17,7 @@
     "backlight",
     "temperature",
     "clock",
+    "tray",
     ],
     "hyprland/window": {
       "format": "{}",
@@ -61,6 +62,9 @@
       "critical-threshold": 80,
       "format": "{icon} {temperatureC}°C",
       "format-icons": ["", "", ""]
+    },
+    "tray": {
+        "spacing": 10
     },
     "battery": {
       "states": {
