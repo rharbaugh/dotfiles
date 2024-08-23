@@ -36,7 +36,6 @@
       "sort-by-number": true,
       "persistent-workspaces": {
         "*": 4, // 5 workspaces by default on every monitor
-        "HDMI-A-1": 3 // but only three on HDMI-A-1
       },
     },
     "clock": {
@@ -79,7 +78,7 @@
       "format-icons": ["", "", "", "", ""]
     },
     "network": {
-      "format-wifi": "  {signalStrength}%",
+      "format-wifi": "   {signalStrength}%",
       "format-ethernet": "{cidr} ",
       "tooltip-format": "{ifname} via {gwaddr} ",
       "format-linked": "{ifname} (No IP) ",
@@ -89,7 +88,7 @@
     },
     "pulseaudio": {
       "format": "{icon}  {volume}%",
-      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth": "{volume}%  {icon} {format_source}",
       "format-bluetooth-muted": " {icon} {format_source}",
       "format-muted": " {format_source}",
       "format-icons": {
