@@ -1,0 +1,9 @@
+profile laptop {
+    output eDP-1 mode 2256x1504@60.00Hz scale 1.566667 position 0,0
+}
+
+profile dock {
+    output eDP-1 disable
+    output "Dell Inc. DELL S3422DWG 3LTSS63" mode 3440x1440@119.99Hz position 0,0
+}
+

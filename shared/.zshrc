@@ -28,7 +28,7 @@ bindkey '^ ' autosuggest-accept
 export EDITOR="nvim"
 
 #load ssh keys on shell startup
-eval `keychain --eval --quiet github devops`
+eval `keychain --eval --quiet github`
 
 #direnv hook
 eval "$(direnv hook zsh)"
@@ -46,5 +46,5 @@ alias -- 'tree'='eza --tree --icons'
 
 #named directory hashes
 hash -d dots="$HOME/.dotfiles"
+hash -d media="$HOME/media"
 hash -d src="$HOME/src"
-hash -d src="$HOME/work"
