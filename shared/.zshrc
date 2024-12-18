@@ -43,6 +43,10 @@ alias -- 'mv'='mv -iv'
 alias -- 'rm'='rm -rifv'
 alias -- 'tree'='eza --tree --icons'
 
+#gcc stuff
+alias -- 'g++'='g++ -ggdb -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++23'
+alias -- 'g+++'='g++ -O2 -DNDEBUG -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++23'
+
 
 #named directory hashes
 hash -d dots="$HOME/.dotfiles"
