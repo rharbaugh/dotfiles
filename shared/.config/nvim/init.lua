@@ -229,6 +229,47 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+    {
+        'theprimeagen/harpoon',
+        branch = 'harpoon2',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            local harpoon = require 'harpoon'
+            harpoon:setup {}
+
+            vim.keymap.set('n', '<leader>a', function()
+                harpoon:list():add()
+            end, { desc = 'Add file to Harpoon' })
+
+            vim.keymap.set('n', '<C-e>', function()
+                harpoon.ui:toggle_quick_menu(harpoon:list())
+            end, { desc = 'Harpoon quick menu' })
+
+            vim.keymap.set('n', '<leader>1', function()
+                harpoon:list():select(1)
+            end, { desc = 'Navigate to Harpoon file 1' })
+
+            vim.keymap.set('n', '<leader>2', function()
+                harpoon:list():select(2)
+            end, { desc = 'Navigate to Harpoon file 2' })
+
+            vim.keymap.set('n', '<leader>3', function()
+                harpoon:list():select(3)
+            end, { desc = 'Navigate to Harpoon file 3' })
+
+            vim.keymap.set('n', '<leader>4', function()
+                harpoon:list():select(4)
+            end, { desc = 'Navigate to Harpoon file 4' })
+
+            -- Toggle previous & next buffers stored within Harpoon list
+            vim.keymap.set('n', '<C-S-P>', function()
+                harpoon:list():prev()
+            end, { desc = 'Next Harpoon Buffer' })
+            vim.keymap.set('n', '<C-S-N>', function()
+                harpoon:list():next()
+            end, { desc = 'Previous Harpoon Buffer' })
+        end,
+    },
 
     -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
@@ -617,7 +658,15 @@ require('lazy').setup({
             --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
             local servers = {
                 -- clangd = {},
-                -- gopls = {},
+                gopls = {},
+                omnisharp = {
+                    settings = {
+                        FormattingOptions = {
+                            EnableEditorConfigSupport = true,
+                        },
+                    },
+                },
+
                 -- pyright = {},
                 -- rust_analyzer = {},
                 -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -899,7 +948,24 @@ require('lazy').setup({
         main = 'nvim-treesitter.configs', -- Sets main module to use for opts
         -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
         opts = {
-            ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+            ensure_installed = {
+                'bash',
+                'c',
+                'diff',
+                'html',
+                'lua',
+                'luadoc',
+                'markdown',
+                'markdown_inline',
+                'query',
+                'vim',
+                'vimdoc',
+                'c_sharp',
+                'go',
+                'gomod',
+                'gowork',
+                'gosum',
+            },
             -- Autoinstall languages that are not installed
             auto_install = true,
             highlight = {
