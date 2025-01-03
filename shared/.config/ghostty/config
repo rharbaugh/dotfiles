@@ -1,2 +1,12 @@
-font-family = Hack Nerd Font Mono
+# Lots of themes are supported out of the box
 theme = GruvboxDark
+
+# Font stuff
+font-family = Hack Nerd Font Mono
+font-size = 10
+
+# Window - padding, disable the title bar, disable the popup when you resize (tiling wm does this automatically)
+window-decoration = false
+window-padding-x = 8
+window-padding-y = 8
+resize-overlay = never
