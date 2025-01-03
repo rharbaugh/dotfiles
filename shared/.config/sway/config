@@ -1,0 +1,12 @@
+include $HOME/.config/sway/variables.sh
+include $HOME/.config/sway/window_rules.sh
+include $HOME/.config/sway/visual.sh
+include $HOME/.config/sway/display.sh
+include $HOME/.config/sway/bindings.sh
+include $HOME/.config/sway/inputs.sh
+
+include /etc/sway/config.d/*
+
+exec waybar
+exec nm-applet
+exec swaync
