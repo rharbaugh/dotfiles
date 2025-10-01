@@ -1,0 +1,45 @@
+# Lots of themes are supported out of the box
+theme = Gruvbox Dark
+
+# Font stuff
+font-family = Hack Nerd Font Mono
+font-size = 10
+
+cursor-style = block
+shell-integration-features = no-cursor
+
+# Window - padding, disable the title bar, disable the popup when you resize (tiling wm does this automatically)
+#window-decoration = false
+window-padding-x = 8
+window-padding-y = 8
+resize-overlay = never
+
+
+#behavioral stuff
+link-url = true
+
+
+#this keybind breaks weechat, so make it do nothing. maybe it's a tab navigation thing or something silly
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind
+keybind = alt+0=unbind
+
+
+#take those tab moving things and put them on ctrl+alt to get out of weechat's way
+keybind = ctrl+alt+1=goto_tab:1
+keybind = ctrl+alt+2=goto_tab:2
+keybind = ctrl+alt+3=goto_tab:3
+keybind = ctrl+alt+4=goto_tab:4
+keybind = ctrl+alt+5=goto_tab:5
+keybind = ctrl+alt+6=goto_tab:6
+keybind = ctrl+alt+7=goto_tab:7
+keybind = ctrl+alt+8=goto_tab:8
+keybind = ctrl+alt+9=last_tab
+

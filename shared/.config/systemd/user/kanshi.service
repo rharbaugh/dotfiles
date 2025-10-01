@@ -1,0 +1,11 @@
+[Unit]
+Description=Dynamic output configuration for Wayland compositors
+Documentation=https://gitlab.freedesktop.org/emersion/kanshi
+BindsTo=hyprland-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kanshi
+
+[Install]
+WantedBy=hyprland-session.target

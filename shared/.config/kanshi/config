@@ -1,0 +1,22 @@
+output eDP-1 {
+	alias $INTERNAL
+	mode 2256x1504@59.999
+	position 0,0
+	scale 1.175
+}
+
+output "Dell Inc. DELL S3422DWG 3LTSS63" {
+	alias $HOMEDESK
+	mode 3440x1440@143.975
+	position 2256,0
+	scale 1
+}
+
+profile home-docked {
+	output $INTERNAL disable
+	output $HOMEDESK enable
+}
+
+profile laptop {
+	output $INTERNAL enable
+}
