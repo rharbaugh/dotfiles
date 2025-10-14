@@ -52,3 +52,9 @@ alias -- 'gccc'='g++ -O2 -DNDEBUG -pedantic-errors -Wall -Wextra -Wconversion -W
 #named directory hashes
 hash -d dots="$HOME/.dotfiles"
 hash -d src="$HOME/src"
+
+
+#start hyprland
+if uwsm check may-start; then
+    exec uwsm start hyprland-uwsm.desktop
+fi
