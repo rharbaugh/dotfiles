@@ -27,7 +27,7 @@ PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
 bindkey '^ ' autosuggest-accept
 
 #load ssh keys on shell startup
-eval `keychain --eval --quiet github`
+eval `keychain --eval --quiet github linode`
 
 #direnv hook
 eval "$(direnv hook zsh)"
