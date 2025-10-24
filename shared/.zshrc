@@ -55,6 +55,6 @@ hash -d src="$HOME/src"
 
 
 #start hyprland
-if uwsm check may-start; then
+if [[ -z "$SSH_CONNECTION" ]] && uwsm check may-start; then
     exec uwsm start hyprland-uwsm.desktop
 fi
