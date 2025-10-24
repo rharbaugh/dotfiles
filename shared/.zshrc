@@ -27,7 +27,7 @@ PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
 bindkey '^ ' autosuggest-accept
 
 #load ssh keys on shell startup
-eval `keychain --eval --quiet github linode`
+eval `keychain --eval --quiet github`
 
 #direnv hook
 eval "$(direnv hook zsh)"
@@ -52,9 +52,3 @@ alias -- 'gccc'='g++ -O2 -DNDEBUG -pedantic-errors -Wall -Wextra -Wconversion -W
 #named directory hashes
 hash -d dots="$HOME/.dotfiles"
 hash -d src="$HOME/src"
-
-
-#start hyprland
-if [[ -z "$SSH_CONNECTION" ]] && uwsm check may-start; then
-    exec uwsm start hyprland-uwsm.desktop
-fi
