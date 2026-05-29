@@ -18,6 +18,7 @@ fi
 
 DOTFILES_THEME_TARGET="$repo/shared/.config" \
 DOTFILES_SYSTEM_TARGET="$repo/system/etc" \
+DOTFILES_QT_CONFIG_TARGET="${XDG_CONFIG_HOME:-$HOME/.config}" \
   "$repo/shared/.local/bin/dotfiles-apply-theme" "$theme"
 
 if [[ "$(realpath -m "$theme")" != "$(realpath -m "$active_theme")" ]]; then

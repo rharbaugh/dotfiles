@@ -73,6 +73,9 @@ The generator writes:
 - Mako notifications: `shared/.config/mako/config`
 - Launcher: `hyprlauncher` is started as a daemon and toggled from `SUPER+D` or `SUPER+Space`.
 - Tuigreet theme env and greetd config fragments.
+- Qt control palettes: `shared/.config/qt5ct/` and `shared/.config/qt6ct/`
+
+Dark mode is advertised through GTK settings, `gsettings`, and XDG Desktop Portal's GTK settings backend. GUI apps and browsers that follow the system color scheme should see `prefer-dark` after the session restarts. GTK uses `Adwaita-dark`; Qt uses Fusion plus the generated qtct dark palette, with Qt6 active by default through `QT_QPA_PLATFORMTHEME=qt6ct`.
 
 ## Hyprland Config
 

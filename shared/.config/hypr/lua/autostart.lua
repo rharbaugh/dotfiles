@@ -4,6 +4,8 @@ local function once(process, command)
 end
 
 hl.on("hyprland.start", function ()
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme prefer-dark")
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark")
     once("hyprpaper", "hyprpaper -c ~/.config/hypr/ecosystem/hyprpaper.conf")
     once("hypridle", "hypridle")
     once("hyprsunset", "hyprsunset")

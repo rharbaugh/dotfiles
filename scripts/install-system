@@ -18,6 +18,8 @@ packages=(
   btop
   cups
   cups-browsed
+  adwaita-icon-theme
+  dconf
   ffmpeg
   grim
   ghostty
@@ -35,6 +37,8 @@ packages=(
   networkmanager
   playerctl
   power-profiles-daemon
+  qt5ct
+  qt6ct
   sane
   sane-airscan
   shikane
@@ -46,6 +50,9 @@ packages=(
   waybar
   wireguard-tools
   wl-clipboard
+  xdg-desktop-portal
+  xdg-desktop-portal-gtk
+  xdg-desktop-portal-hyprland
   yazi
 )
 
