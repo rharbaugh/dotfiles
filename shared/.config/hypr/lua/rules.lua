@@ -35,6 +35,14 @@ hl.window_rule({
     size  = "80% 80%",
 })
 
+hl.window_rule({
+    name  = "float-power-menu",
+    match = { title = "^Power$" },
+
+    float = true,
+    size  = "360 300",
+})
+
 hl.layer_rule({
     name  = "hyprlauncher-blur",
     match = { namespace = "^hyprlauncher$" },

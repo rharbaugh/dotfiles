@@ -9,7 +9,7 @@ function settings.tui(command, title)
         return settings.terminal .. " -e " .. command
     end
 
-    return settings.terminal .. " -e sh -lc 'printf \"\\033]2;" .. title .. "\\007\"; exec " .. command .. "'"
+    return "dotfiles-popup " .. title .. " " .. command
 end
 
 return settings

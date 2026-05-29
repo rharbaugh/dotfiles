@@ -5,13 +5,11 @@ theme="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/theme.json"
 foreground="#d3c6aa"
 background="#2d353b"
 accent="#7fbbb3"
-surface="#3C486D"
 
 if [ -r "$theme" ] && command -v jq >/dev/null 2>&1; then
   foreground="$(jq -r '.colors.foreground' "$theme")"
   background="$(jq -r '.colors.background' "$theme")"
   accent="$(jq -r '.colors.accent' "$theme")"
-  surface="$(jq -r '.colors.surface' "$theme")"
 fi
 
 choose_with_gum() {
@@ -25,8 +23,6 @@ choose_with_gum() {
     --selected.background "$accent" \
     --item.foreground "$foreground" \
     --item.background "$background" \
-    --match.foreground "$foreground" \
-    --match.background "$surface" \
     "lock" "logout" "restart" "sleep" "hibernate" "shutdown"
 }
 

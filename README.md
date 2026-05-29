@@ -131,7 +131,7 @@ Command-line control:
 nmcli
 ```
 
-Waybar Wi-Fi actions and `SUPER+SHIFT+W` launch `nmtui` in Ghostty through `dotfiles-tui`, which applies the current theme to newt-based TUIs via `NEWT_COLORS`.
+Waybar Wi-Fi actions and `SUPER+SHIFT+W` launch `nmtui` in a floating Ghostty popup through `dotfiles-popup` and `dotfiles-tui`, which applies the current theme to newt-based TUIs via `NEWT_COLORS`.
 
 ## Power And Idle
 
@@ -143,7 +143,7 @@ Hypridle is configured for:
 - When plugged in: stop at locked plus display off; do not suspend or hibernate.
 - 15 minutes after a battery suspend: hibernate via systemd sleep settings.
 
-Power actions are centralized in `dotfiles-power`. The TUI-style power menu is `dotfiles-power-menu`, and `dotfiles-toggle-power-menu` is used by both `SUPER+SHIFT+P` and the Waybar power icon.
+Power actions are centralized in `dotfiles-power`. The TUI-style floating power menu is `dotfiles-power-menu`, and `dotfiles-toggle-power-menu` is used by both `SUPER+SHIFT+P` and the Waybar power icon.
 
 ## Screenshots
 

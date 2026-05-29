@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+set -eu
+
+usage() {
+  printf '%s\n' "usage: dotfiles-popup TITLE COMMAND [ARG ...]" >&2
+  exit 2
+}
+
+[ "$#" -ge 2 ] || usage
+
+title="$1"
+shift
+
+exec ghostty -e sh -lc 'printf "\033]2;%s\007" "$1"; shift; exec "$@"' sh "$title" "$@"
