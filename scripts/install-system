@@ -10,6 +10,7 @@ repo="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
 packages=(
   avahi
+  bat
   bluez
   bluez-obex
   bluez-utils
@@ -33,7 +34,9 @@ packages=(
   hyprshutdown
   hyprsunset
   jq
+  keychain
   mako
+  neovim
   networkmanager
   playerctl
   power-profiles-daemon
@@ -43,6 +46,7 @@ packages=(
   sane-airscan
   shikane
   slurp
+  starship
   stow
   ttf-hack-nerd
   greetd-tuigreet
@@ -53,7 +57,9 @@ packages=(
   xdg-desktop-portal
   xdg-desktop-portal-gtk
   xdg-desktop-portal-hyprland
+  eza
   yazi
+  zsh
 )
 
 pacman -S --needed "${packages[@]}"

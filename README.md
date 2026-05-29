@@ -133,6 +133,19 @@ nmcli
 
 Waybar Wi-Fi actions and `SUPER+SHIFT+W` launch `nmtui` in a floating Ghostty popup through `dotfiles-popup` and `dotfiles-tui`, which applies the current theme to newt-based TUIs via `NEWT_COLORS`.
 
+## Shell
+
+Zsh is configured in `shared/.zshrc` with Starship as the prompt, keychain-managed SSH identities, and terminal-first aliases.
+
+Expected SSH identity names:
+
+```text
+~/.ssh/github
+~/.ssh/git
+```
+
+When either file exists, new interactive Zsh shells add it to the keychain-managed SSH agent so Git can use it. Core aliases include `v` for `nvim`, `ls` as `eza -al --group-directories-first --icons=auto`, and `cat` through `bat --paging=never`.
+
 ## Power And Idle
 
 Hypridle is configured for:
