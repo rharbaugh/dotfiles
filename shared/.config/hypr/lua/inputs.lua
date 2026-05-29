@@ -31,9 +31,3 @@ hl.gesture({
     direction = "horizontal",
     action = "workspace"
 })
-
-hl.device({
-    name          = "pixa3854:00-093a:0274-mouse",
-    accel_profile = "flat",
-    sensitivity   = 0,
-})
