@@ -117,12 +117,6 @@ If stale links exist in `~/.config/hypr` after a layout change, run:
 
 Wofi is the launcher and lightweight menu target. `SUPER+D` and `SUPER+Space` run `wofi --show drun`. `dotfiles-power-menu` uses `wofi --dmenu`, with a plain shell menu inside the existing Ghostty popup retained as a fallback.
 
-Obsolete launcher packages can be removed after switching:
-
-```sh
-sudo pacman -Rns walker-bin elephant hyprlauncher
-```
-
 ## Network
 
 Use NetworkManager:
