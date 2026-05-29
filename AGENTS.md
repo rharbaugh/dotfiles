@@ -35,6 +35,8 @@ shared/
 
 Prefer grouping files by installable package or shared concern rather than scattering unrelated configuration together. If a config applies broadly across the system, `shared/` is appropriate. If a tool grows into its own meaningful unit, create a dedicated Stow package for it.
 
+System-level files that do not belong under `$HOME` may live in a separate package such as `system/`, intended to be installed explicitly with a root target such as `sudo stow -t / system`.
+
 Avoid hard-coding machine-specific paths or secrets. When host-specific behavior is needed, prefer small sourced override files, documented environment variables, or clearly named host packages.
 
 ## Configuration Priorities
@@ -61,6 +63,8 @@ Treat theming as a system-level concern, not a per-program afterthought.
 - Document theme decisions as they emerge.
 - Avoid one-off styling unless there is a clear reason.
 - When possible, define theme values in a reusable location and import them into tool-specific configs.
+
+The canonical theme source is `shared/.config/dotfiles/theme.json`. Regenerate app-specific theme fragments with `dotfiles-apply-theme` after changing it.
 
 ## Hyprland System Components
 

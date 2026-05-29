@@ -1,10 +1,4 @@
-@define-color foreground #ffcead;
-@define-color background #060B1E;
-@define-color surface #3C486D;
-@define-color accent #7d82d9;
-@define-color muted #6d7db6;
-@define-color warning #E9BB4F;
-@define-color critical #ED5B5A;
+@import "theme.css";
 
 * {
     background-color: @background;
