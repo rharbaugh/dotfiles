@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+set -eu
+
+theme="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/theme.json"
+
+if [ -r "$theme" ] && command -v jq >/dev/null 2>&1; then
+  export NEWT_COLORS="$(
+    jq -r '
+      .colors as $c |
+      "root=\($c.foreground),\($c.background) " +
+      "window=\($c.foreground),\($c.background) " +
+      "border=\($c.accent),\($c.background) " +
+      "title=\($c.warning),\($c.background) " +
+      "button=\($c.background),\($c.warning) " +
+      "actbutton=\($c.background),\($c.accent) " +
+      "entry=\($c.foreground),\($c.surface) " +
+      "label=\($c.foreground),\($c.background) " +
+      "listbox=\($c.foreground),\($c.background) " +
+      "actlistbox=\($c.background),\($c.accent) " +
+      "textbox=\($c.foreground),\($c.background) " +
+      "acttextbox=\($c.background),\($c.accent) " +
+      "helpline=\($c.muted),\($c.background) " +
+      "compactbutton=\($c.background),\($c.accent)"
+    ' "$theme"
+  )"
+fi
+
+exec "$@"

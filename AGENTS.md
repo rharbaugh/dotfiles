@@ -18,6 +18,7 @@ The system is assumed to be migrating from a KDE-oriented setup toward a Hyprlan
 - Design preference: coherent system-wide theming across terminal, shell, editor, launcher, bar, notifications, lock screen, file management, and desktop utilities.
 - Theme preference: use Omarchy's Ethereal theme where practical, adapted to this repo instead of depending on Omarchy's full theme machinery.
 - Font preference: use `ttf-hack-nerd` / Hack Nerd Font for terminal and desktop UI typography.
+- Network preference: keep NetworkManager as the network authority, including Wi-Fi and WireGuard; use `nmtui`/`nmcli` for terminal workflows rather than standalone iwd/Impala.
 - Scope: eventually replace or cover the major practical components of a former KDE setup without recreating KDE itself.
 
 ## Repository Layout
