@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+theme="${1:-$repo/shared/.config/dotfiles/theme.json}"
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "apply-theme requires jq" >&2
+  exit 1
+fi
+
+DOTFILES_THEME_TARGET="$repo/shared/.config" \
+DOTFILES_SYSTEM_TARGET="$repo/system/etc" \
+  "$repo/shared/.local/bin/dotfiles-apply-theme" "$theme"
+
+echo "Regenerated theme fragments from $theme"
+echo "Run 'stow shared' or './scripts/restow-shared' to apply them to \$HOME."

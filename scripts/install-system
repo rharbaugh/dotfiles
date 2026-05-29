@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if (( EUID != 0 )); then
+  echo "install-system must be run as root" >&2
+  exit 1
+fi
+
+repo="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+
+packages=(
+  avahi
+  bluez
+  bluez-obex
+  bluez-utils
+  bluetui
+  brightnessctl
+  btop
+  cups
+  cups-browsed
+  ffmpeg
+  ghostty
+  greetd
+  hypridle
+  hyprland
+  hyprlauncher
+  hyprlock
+  hyprpaper
+  hyprsunset
+  jq
+  networkmanager
+  playerctl
+  power-profiles-daemon
+  sane
+  sane-airscan
+  stow
+  ttf-hack-nerd
+  tuigreet
+  uwsm
+  waybar
+  wireguard-tools
+  yazi
+)
+
+pacman -S --needed "${packages[@]}"
+
+if [[ -f /etc/greetd/config.toml && ! -f /etc/greetd/config.toml.bak ]]; then
+  cp /etc/greetd/config.toml /etc/greetd/config.toml.bak
+fi
+
+install -Dm644 "$repo/system/etc/greetd/config.toml" /etc/greetd/config.toml
+
+systemctl enable --now NetworkManager.service
+systemctl enable --now bluetooth.service
+systemctl enable --now cups.service
+systemctl enable --now avahi-daemon.service
+systemctl enable --now cups-browsed.service
+systemctl enable --now greetd.service
+
+if systemctl list-unit-files sddm.service >/dev/null 2>&1; then
+  systemctl disable --now sddm.service || true
+fi
+
+echo "System packages and services installed."
+echo "Run './scripts/restow-shared' as the user to apply home dotfiles."

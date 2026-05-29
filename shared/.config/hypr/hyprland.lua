@@ -1,7 +1,7 @@
 -- Main Hyprland entrypoint. Keep feature work in the focused modules below.
 
 local config_home = os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")
-package.path = config_home .. "/hypr/?.lua;" .. package.path
+package.path = config_home .. "/hypr/lua/?.lua;" .. package.path
 
 require("settings")
 require("outputs")

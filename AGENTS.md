@@ -67,6 +67,8 @@ Treat theming as a system-level concern, not a per-program afterthought.
 
 The canonical theme source is `shared/.config/dotfiles/theme.json`. Regenerate app-specific theme fragments with `dotfiles-apply-theme` after changing it.
 
+Hyprland compositor configuration should stay Lua-only: keep `hyprland.lua` as the entrypoint and place required modules under `shared/.config/hypr/lua/`. Plain `.conf` files under `shared/.config/hypr/` are only for separate Hypr ecosystem programs that require them, such as hypridle and hyprsunset.
+
 ## Hyprland System Components
 
 Over time, expect the repo to cover the practical pieces of a complete desktop:
