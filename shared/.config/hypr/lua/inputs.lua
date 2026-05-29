@@ -11,12 +11,17 @@ hl.config({
         kb_model   = "",
         kb_options = "",
         kb_rules   = "",
+        repeat_rate  = 40,
+        repeat_delay = 400,
 
         follow_mouse = 0,
         sensitivity  = 0,
 
         touchpad = {
-            natural_scroll = true,
+            natural_scroll = false,
+            disable_while_typing = true,
+            clickfinger_behavior = true,
+            tap_and_drag = true,
         },
     },
 })
@@ -27,8 +32,8 @@ hl.gesture({
     action = "workspace"
 })
 
--- Placeholder for per-device tuning once real device names are confirmed.
 hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
+    name          = "pixa3854:00-093a:0274-mouse",
+    accel_profile = "flat",
+    sensitivity   = 0,
 })
