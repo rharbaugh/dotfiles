@@ -1,0 +1,23 @@
+# Local machine overrides and secrets
+.env
+.env.*
+*.pem
+*.key
+*.age
+id_*
+
+# Editor and tool noise
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs and temporary output
+*.log
+tmp/
+temp/
+.cache/
+
+# Local Neovim runtime output if validation is run from repo root
+nvim.log
