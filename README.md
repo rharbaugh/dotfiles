@@ -134,6 +134,12 @@ sudo pacman -Rns hyprlauncher
 
 `SUPER+D` and `SUPER+Space` run `walker`. `dotfiles-power-menu` uses `walker --dmenu` when Walker is installed, with a plain shell menu inside the existing Ghostty popup retained as a fallback.
 
+Walker requires Elephant to be running. The user service is checked in at `shared/.config/systemd/user/elephant.service`; after restowing, enable it with:
+
+```sh
+systemctl --user enable --now elephant.service
+```
+
 ## Network
 
 Use NetworkManager:
