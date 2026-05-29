@@ -8,3 +8,11 @@ stow -D shared
 stow shared
 
 echo "Restowed shared package."
+
+if [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]] && command -v hyprctl >/dev/null 2>&1; then
+  if hyprctl reload >/dev/null; then
+    echo "Reloaded Hyprland."
+  else
+    echo "Warning: failed to reload Hyprland." >&2
+  fi
+fi
