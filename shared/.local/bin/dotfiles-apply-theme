@@ -201,7 +201,7 @@ if [ -n "$system_target" ]; then
     printf '%s\n' "vt = 1"
     printf '%s\n' ""
     printf '%s\n' "[default_session]"
-    printf 'command = "tuigreet --time --time-format '\''%%A %%H:%%M'\'' --width 72 --remember --remember-session --asterisks --theme '\''%s'\'' --cmd Hyprland"\n' "$tuigreet_theme"
+    printf 'command = "tuigreet --time --time-format '\''%%A %%H:%%M'\'' --width 72 --remember --remember-session --asterisks --theme '\''%s'\'' --cmd '\''uwsm start hyprland.desktop'\''"\n' "$tuigreet_theme"
     printf '%s\n' 'user = "greeter"'
   } > "$system_target/greetd/config.toml"
 fi

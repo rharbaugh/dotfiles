@@ -3,5 +3,5 @@
 vt = 1
 
 [default_session]
-command = "tuigreet --time --time-format '%A %H:%M' --width 72 --remember --remember-session --asterisks --theme 'border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow' --cmd Hyprland"
+command = "tuigreet --time --time-format '%A %H:%M' --width 72 --remember --remember-session --asterisks --theme 'border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow' --cmd 'uwsm start hyprland.desktop'"
 user = "greeter"

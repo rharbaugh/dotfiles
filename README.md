@@ -64,6 +64,12 @@ Apply regenerated files to `$HOME`:
 ./scripts/restow-shared
 ```
 
+Apply regenerated login screen and other system files:
+
+```sh
+sudo ./scripts/install-system
+```
+
 The generator writes:
 
 - Ghostty colors: `shared/.config/ghostty/theme.conf`
@@ -155,7 +161,9 @@ The Hyprland wiki's systemd startup page says that, in a UWSM-managed session, a
 
 Autostart uses UWSM when available and active, with a direct fallback otherwise. This keeps the config usable from both UWSM-managed and plain Hyprland sessions.
 
-Choose `hyprland (uwsm-managed)` in greetd/display-manager sessions when available.
+Greetd launches the default session with `uwsm start hyprland.desktop`, so Hyprland enters through the UWSM-managed path.
+
+Waybar is skipped by the Hyprland autostart in UWSM-managed sessions so the user systemd service path can own it. Plain Hyprland sessions still get a direct `waybar` fallback.
 
 ## Displays
 

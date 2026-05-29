@@ -3,6 +3,10 @@ local function once(process, command)
     hl.exec_cmd("sh -c 'command -v " .. process .. " >/dev/null 2>&1 && { pgrep -x " .. process .. " >/dev/null || " .. start .. "; }'")
 end
 
+local function once_plain_session(process, command)
+    hl.exec_cmd("sh -c 'if command -v uwsm >/dev/null 2>&1 && uwsm check is-active >/dev/null 2>&1; then exit 0; fi; command -v " .. process .. " >/dev/null 2>&1 && { pgrep -x " .. process .. " >/dev/null || " .. command .. "; }'")
+end
+
 hl.on("hyprland.start", function ()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme prefer-dark")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark")
@@ -11,5 +15,5 @@ hl.on("hyprland.start", function ()
     once("hyprsunset", "hyprsunset")
     once("hyprlauncher", "hyprlauncher --daemon")
     once("mako", "mako")
-    once("waybar", "waybar")
+    once_plain_session("waybar", "waybar")
 end)
