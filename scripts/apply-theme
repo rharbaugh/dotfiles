@@ -2,7 +2,14 @@
 set -euo pipefail
 
 repo="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-theme="${1:-$repo/shared/.config/dotfiles/theme.json}"
+theme_arg="${1:-$repo/shared/.config/dotfiles/theme.json}"
+active_theme="$repo/shared/.config/dotfiles/theme.json"
+
+if [[ "$theme_arg" != */* && -f "$repo/shared/.config/dotfiles/themes/$theme_arg.json" ]]; then
+  theme="$repo/shared/.config/dotfiles/themes/$theme_arg.json"
+else
+  theme="$theme_arg"
+fi
 
 if ! command -v jq >/dev/null 2>&1; then
   echo "apply-theme requires jq" >&2
@@ -12,6 +19,10 @@ fi
 DOTFILES_THEME_TARGET="$repo/shared/.config" \
 DOTFILES_SYSTEM_TARGET="$repo/system/etc" \
   "$repo/shared/.local/bin/dotfiles-apply-theme" "$theme"
+
+if [[ "$(realpath -m "$theme")" != "$(realpath -m "$active_theme")" ]]; then
+  cp "$theme" "$active_theme"
+fi
 
 echo "Regenerated theme fragments from $theme"
 echo "Run 'stow shared' or './scripts/restow-shared' to apply them to \$HOME."

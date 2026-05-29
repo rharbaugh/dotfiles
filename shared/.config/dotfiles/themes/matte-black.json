@@ -1,0 +1,43 @@
+{
+  "name": "Matte Black",
+  "slug": "matte-black",
+  "source": "Omarchy stock theme",
+  "font_family": "Hack Nerd Font",
+  "font_package": "ttf-hack-nerd",
+  "colors": {
+    "accent": "#e68e0d",
+    "cursor": "#eaeaea",
+    "foreground": "#bebebe",
+    "background": "#121212",
+    "surface": "#333333",
+    "selection_foreground": "#bebebe",
+    "selection_background": "#515151",
+    "critical": "#D35F5F",
+    "success": "#FFC107",
+    "warning": "#b91c1c",
+    "orange": "#bebebe",
+    "purple": "#D35F5F",
+    "cyan": "#bebebe",
+    "muted": "#8a8a8d",
+    "color0": "#333333",
+    "color1": "#D35F5F",
+    "color2": "#FFC107",
+    "color3": "#b91c1c",
+    "color4": "#e68e0d",
+    "color5": "#D35F5F",
+    "color6": "#bebebe",
+    "color7": "#bebebe",
+    "color8": "#8a8a8d",
+    "color9": "#B91C1C",
+    "color10": "#FFC107",
+    "color11": "#b90a0a",
+    "color12": "#f59e0b",
+    "color13": "#B91C1C",
+    "color14": "#eaeaea",
+    "color15": "#ffffff"
+  },
+  "tuigreet": {
+    "theme": "border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow"
+  },
+  "mode": "dark"
+}

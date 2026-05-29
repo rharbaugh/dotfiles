@@ -1,0 +1,43 @@
+{
+  "name": "Ethereal",
+  "slug": "ethereal",
+  "source": "Omarchy stock theme",
+  "font_family": "Hack Nerd Font",
+  "font_package": "ttf-hack-nerd",
+  "colors": {
+    "accent": "#7d82d9",
+    "cursor": "#ffcead",
+    "foreground": "#ffcead",
+    "background": "#060B1E",
+    "surface": "#3C486D",
+    "selection_foreground": "#060B1E",
+    "selection_background": "#ffcead",
+    "critical": "#ED5B5A",
+    "success": "#92a593",
+    "warning": "#E9BB4F",
+    "orange": "#F99957",
+    "purple": "#c89dc1",
+    "cyan": "#a3bfd1",
+    "muted": "#6d7db6",
+    "color0": "#3C486D",
+    "color1": "#ED5B5A",
+    "color2": "#92a593",
+    "color3": "#E9BB4F",
+    "color4": "#7d82d9",
+    "color5": "#c89dc1",
+    "color6": "#a3bfd1",
+    "color7": "#F99957",
+    "color8": "#6d7db6",
+    "color9": "#faaaa9",
+    "color10": "#c4cfc4",
+    "color11": "#f7dc9c",
+    "color12": "#c2c4f0",
+    "color13": "#ead7e7",
+    "color14": "#dfeaf0",
+    "color15": "#ffcead"
+  },
+  "tuigreet": {
+    "theme": "border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow"
+  },
+  "mode": "dark"
+}

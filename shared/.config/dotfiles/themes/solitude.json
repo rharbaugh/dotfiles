@@ -1,0 +1,43 @@
+{
+  "name": "Solitude",
+  "slug": "solitude",
+  "source": "Omarchy stock theme",
+  "font_family": "Hack Nerd Font",
+  "font_package": "ttf-hack-nerd",
+  "colors": {
+    "accent": "#798186",
+    "cursor": "#cacccc",
+    "foreground": "#cacccc",
+    "background": "#101315",
+    "surface": "#101315",
+    "selection_foreground": "#101315",
+    "selection_background": "#798186",
+    "critical": "#565d60",
+    "success": "#9fa5a9",
+    "warning": "#d9dbdc",
+    "orange": "#cbc2be",
+    "purple": "#aeaeae",
+    "cyan": "#707070",
+    "muted": "#4b4e55",
+    "color0": "#101315",
+    "color1": "#565d60",
+    "color2": "#9fa5a9",
+    "color3": "#d9dbdc",
+    "color4": "#798186",
+    "color5": "#aeaeae",
+    "color6": "#707070",
+    "color7": "#cbc2be",
+    "color8": "#4b4e55",
+    "color9": "#de6145",
+    "color10": "#343d41",
+    "color11": "#c9c2b4",
+    "color12": "#5d6367",
+    "color13": "#9a9a9a",
+    "color14": "#707070",
+    "color15": "#a5aeb4"
+  },
+  "tuigreet": {
+    "theme": "border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow"
+  },
+  "mode": "dark"
+}

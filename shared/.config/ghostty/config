@@ -1,5 +1,5 @@
-# Ethereal-inspired Ghostty config.
-# Palette adapted from Omarchy's Ethereal theme; font preference is local.
+# Omarchy-inspired Ghostty config.
+# Palette is generated from the active dotfiles theme; font preference is local.
 config-file = ~/.config/ghostty/theme.conf
 
 font-family = "Hack Nerd Font"

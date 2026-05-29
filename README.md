@@ -2,7 +2,7 @@
 
 GNU Stow dotfiles for an Arch Linux / Hyprland setup, initially targeted at a Framework Laptop 13.
 
-The desktop is terminal-first, NetworkManager-backed, and themed around an Omarchy Ethereal-inspired palette using Hack Nerd Font.
+The desktop is terminal-first, NetworkManager-backed, and themed around Omarchy stock palettes using Hack Nerd Font. Everforest is the active default.
 
 ## Layout
 
@@ -34,16 +34,28 @@ The root install script enables NetworkManager, Bluetooth, CUPS, Avahi, cups-bro
 
 ## Theme Workflow
 
-Edit:
+The active theme is:
 
 ```sh
 shared/.config/dotfiles/theme.json
+```
+
+Stock Omarchy theme sources are kept ready to apply under:
+
+```sh
+shared/.config/dotfiles/themes/
 ```
 
 Regenerate all checked-in theme fragments:
 
 ```sh
 ./scripts/apply-theme
+```
+
+Switch to a stock theme, such as Ethereal:
+
+```sh
+./scripts/apply-theme ethereal
 ```
 
 Apply regenerated files to `$HOME`:
@@ -59,7 +71,7 @@ The generator writes:
 - Hyprland Lua theme: `shared/.config/hypr/lua/theme.lua`
 - Hyprlock colors: `shared/.config/hypr/ecosystem/hyprlock-theme.conf`
 - Mako notifications: `shared/.config/mako/config`
-- Walker CSS variables: `shared/.config/walker/themes/theme.css`
+- Launcher: `hyprlauncher` is started as a daemon and toggled from `SUPER+D` or `SUPER+Space`.
 - Tuigreet theme env and greetd config fragments.
 
 ## Hyprland Config

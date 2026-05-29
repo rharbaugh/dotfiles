@@ -2,7 +2,7 @@ local settings = {}
 
 settings.terminal = "ghostty"
 settings.file_manager = settings.terminal .. " -e yazi"
-settings.launcher = "command -v walker >/dev/null 2>&1 && walker || hyprlauncher"
+settings.launcher = "hyprlauncher --toggle"
 
 function settings.tui(command, title)
     if title == nil then

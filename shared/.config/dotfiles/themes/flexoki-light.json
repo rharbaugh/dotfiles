@@ -1,0 +1,43 @@
+{
+  "name": "Flexoki Light",
+  "slug": "flexoki-light",
+  "source": "Omarchy stock theme",
+  "font_family": "Hack Nerd Font",
+  "font_package": "ttf-hack-nerd",
+  "colors": {
+    "accent": "#205EA6",
+    "cursor": "#100F0F",
+    "foreground": "#100F0F",
+    "background": "#FFFCF0",
+    "surface": "#DAD8CE",
+    "selection_foreground": "#100F0F",
+    "selection_background": "#CECDC3",
+    "critical": "#D14D41",
+    "success": "#879A39",
+    "warning": "#D0A215",
+    "orange": "#B7B5AC",
+    "purple": "#CE5D97",
+    "cyan": "#3AA99F",
+    "muted": "#100F0F",
+    "color0": "#DAD8CE",
+    "color1": "#D14D41",
+    "color2": "#879A39",
+    "color3": "#D0A215",
+    "color4": "#205EA6",
+    "color5": "#CE5D97",
+    "color6": "#3AA99F",
+    "color7": "#B7B5AC",
+    "color8": "#100F0F",
+    "color9": "#D14D41",
+    "color10": "#879A39",
+    "color11": "#D0A215",
+    "color12": "#4385BE",
+    "color13": "#CE5D97",
+    "color14": "#3AA99F",
+    "color15": "#CECDC3"
+  },
+  "tuigreet": {
+    "theme": "border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow"
+  },
+  "mode": "light"
+}

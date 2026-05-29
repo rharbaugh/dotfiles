@@ -1,0 +1,43 @@
+{
+  "name": "Miasma",
+  "slug": "miasma",
+  "source": "Omarchy stock theme",
+  "font_family": "Hack Nerd Font",
+  "font_package": "ttf-hack-nerd",
+  "colors": {
+    "accent": "#78824b",
+    "cursor": "#c7c7c7",
+    "foreground": "#c2c2b0",
+    "background": "#222222",
+    "surface": "#000000",
+    "selection_foreground": "#c2c2b0",
+    "selection_background": "#78824b",
+    "critical": "#685742",
+    "success": "#5f875f",
+    "warning": "#b36d43",
+    "orange": "#d7c483",
+    "purple": "#bb7744",
+    "cyan": "#c9a554",
+    "muted": "#666666",
+    "color0": "#000000",
+    "color1": "#685742",
+    "color2": "#5f875f",
+    "color3": "#b36d43",
+    "color4": "#78824b",
+    "color5": "#bb7744",
+    "color6": "#c9a554",
+    "color7": "#d7c483",
+    "color8": "#666666",
+    "color9": "#685742",
+    "color10": "#5f875f",
+    "color11": "#b36d43",
+    "color12": "#78824b",
+    "color13": "#bb7744",
+    "color14": "#c9a554",
+    "color15": "#d7c483"
+  },
+  "tuigreet": {
+    "theme": "border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow"
+  },
+  "mode": "dark"
+}

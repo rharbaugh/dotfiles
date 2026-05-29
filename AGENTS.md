@@ -16,7 +16,7 @@ The system is assumed to be migrating from a KDE-oriented setup toward a Hyprlan
 - Dotfiles manager: GNU Stow.
 - Workflow preference: terminal-based, keyboard-first, minimal mouse dependency.
 - Design preference: coherent system-wide theming across terminal, shell, editor, launcher, bar, notifications, lock screen, file management, and desktop utilities.
-- Theme preference: use Omarchy's Ethereal theme where practical, adapted to this repo instead of depending on Omarchy's full theme machinery.
+- Theme preference: use Omarchy's Everforest theme where practical, adapted to this repo instead of depending on Omarchy's full theme machinery. Keep Ethereal available as a saved switchable theme.
 - Font preference: use `ttf-hack-nerd` / Hack Nerd Font for terminal and desktop UI typography.
 - Network preference: keep NetworkManager as the network authority, including Wi-Fi and WireGuard; use `nmtui`/`nmcli` for terminal workflows rather than standalone iwd/Impala.
 - Scope: eventually replace or cover the major practical components of a former KDE setup without recreating KDE itself.
@@ -59,7 +59,7 @@ Treat theming as a system-level concern, not a per-program afterthought.
 
 - Keep colors, fonts, spacing, and interaction states consistent across components.
 - Prefer a small shared palette that can be reused by terminal, Waybar, launcher, notifications, editor, and lock screen.
-- Prefer Omarchy Ethereal colors when no stronger local preference exists.
+- Prefer Omarchy Everforest colors when no stronger local preference exists.
 - Prefer Hack Nerd Font from `ttf-hack-nerd` for UI and terminal text.
 - Document theme decisions as they emerge.
 - Avoid one-off styling unless there is a clear reason.

@@ -1,0 +1,43 @@
+{
+  "name": "Gruvbox",
+  "slug": "gruvbox",
+  "source": "Omarchy stock theme",
+  "font_family": "Hack Nerd Font",
+  "font_package": "ttf-hack-nerd",
+  "colors": {
+    "accent": "#7daea3",
+    "cursor": "#bdae93",
+    "foreground": "#d4be98",
+    "background": "#282828",
+    "surface": "#3c3836",
+    "selection_foreground": "#ebdbb2",
+    "selection_background": "#d65d0e",
+    "critical": "#ea6962",
+    "success": "#a9b665",
+    "warning": "#d8a657",
+    "orange": "#d4be98",
+    "purple": "#d3869b",
+    "cyan": "#89b482",
+    "muted": "#3c3836",
+    "color0": "#3c3836",
+    "color1": "#ea6962",
+    "color2": "#a9b665",
+    "color3": "#d8a657",
+    "color4": "#7daea3",
+    "color5": "#d3869b",
+    "color6": "#89b482",
+    "color7": "#d4be98",
+    "color8": "#3c3836",
+    "color9": "#ea6962",
+    "color10": "#a9b665",
+    "color11": "#d8a657",
+    "color12": "#7daea3",
+    "color13": "#d3869b",
+    "color14": "#89b482",
+    "color15": "#d4be98"
+  },
+  "tuigreet": {
+    "theme": "border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow"
+  },
+  "mode": "dark"
+}

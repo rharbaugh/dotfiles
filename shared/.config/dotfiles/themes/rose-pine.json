@@ -1,0 +1,43 @@
+{
+  "name": "Rose Pine",
+  "slug": "rose-pine",
+  "source": "Omarchy stock theme",
+  "font_family": "Hack Nerd Font",
+  "font_package": "ttf-hack-nerd",
+  "colors": {
+    "accent": "#56949f",
+    "cursor": "#cecacd",
+    "foreground": "#575279",
+    "background": "#faf4ed",
+    "surface": "#f2e9e1",
+    "selection_foreground": "#575279",
+    "selection_background": "#dfdad9",
+    "critical": "#b4637a",
+    "success": "#286983",
+    "warning": "#ea9d34",
+    "orange": "#575279",
+    "purple": "#907aa9",
+    "cyan": "#d7827e",
+    "muted": "#9893a5",
+    "color0": "#f2e9e1",
+    "color1": "#b4637a",
+    "color2": "#286983",
+    "color3": "#ea9d34",
+    "color4": "#56949f",
+    "color5": "#907aa9",
+    "color6": "#d7827e",
+    "color7": "#575279",
+    "color8": "#9893a5",
+    "color9": "#b4637a",
+    "color10": "#286983",
+    "color11": "#ea9d34",
+    "color12": "#56949f",
+    "color13": "#907aa9",
+    "color14": "#d7827e",
+    "color15": "#575279"
+  },
+  "tuigreet": {
+    "theme": "border=blue;text=yellow;prompt=magenta;time=blue;action=blue;button=yellow;container=black;input=yellow"
+  },
+  "mode": "light"
+}
