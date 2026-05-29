@@ -8,12 +8,12 @@ choose_with_shell() {
   done
 }
 
-choose_with_walker() {
-  printf '%s\n' lock logout restart sleep hibernate shutdown | walker --dmenu
+choose_with_wofi() {
+  printf '%s\n' lock logout restart sleep hibernate shutdown | wofi --dmenu --prompt Power --width 360 --height 300
 }
 
-if command -v walker >/dev/null 2>&1; then
-  action="$(choose_with_walker)"
+if command -v wofi >/dev/null 2>&1; then
+  action="$(choose_with_wofi)"
 else
   action="$(choose_with_shell)"
 fi

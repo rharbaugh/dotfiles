@@ -43,8 +43,9 @@ hl.window_rule({
     size  = "360 300",
 })
 
-hl.layer_rule({
-    name  = "walker-blur",
-    match = { namespace = "^walker$" },
-    blur  = true,
+hl.window_rule({
+    name  = "float-wofi",
+    match = { class = "^wofi$" },
+
+    float = true,
 })

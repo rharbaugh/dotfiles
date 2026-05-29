@@ -54,6 +54,7 @@ packages=(
   waybar
   wireguard-tools
   wl-clipboard
+  wofi
   xdg-desktop-portal
   xdg-desktop-portal-gtk
   xdg-desktop-portal-hyprland

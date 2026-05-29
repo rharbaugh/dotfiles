@@ -2,7 +2,7 @@ local settings = {}
 
 settings.terminal = "ghostty"
 settings.file_manager = settings.terminal .. " -e yazi"
-settings.launcher = "walker"
+settings.launcher = "wofi --show drun"
 
 function settings.tui(command, title)
     if title == nil then

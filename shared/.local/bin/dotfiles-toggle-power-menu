@@ -6,7 +6,7 @@ if pgrep -u "$(id -u)" -f "[d]otfiles-power-menu" >/dev/null 2>&1; then
   exit 0
 fi
 
-if command -v walker >/dev/null 2>&1; then
+if command -v wofi >/dev/null 2>&1; then
   exec dotfiles-power-menu
 fi
 

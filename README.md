@@ -74,11 +74,12 @@ The generator writes:
 
 - Ghostty colors: `shared/.config/ghostty/theme.conf`
 - Waybar colors: `shared/.config/waybar/theme.css`
+- Wofi colors: `shared/.config/wofi/style.css`
 - Yazi colors: `shared/.config/yazi/theme.toml`
 - Hyprland Lua theme: `shared/.config/hypr/lua/theme.lua`
 - Hyprlock colors: `shared/.config/hypr/ecosystem/hyprlock-theme.conf`
 - Mako notifications: `shared/.config/mako/config`
-- Launcher: Walker is toggled from `SUPER+D` or `SUPER+Space`.
+- Launcher: Wofi is toggled from `SUPER+D` or `SUPER+Space`.
 - Tuigreet theme env and greetd config fragments.
 - Qt control palettes: `shared/.config/qt5ct/` and `shared/.config/qt6ct/`
 
@@ -114,30 +115,12 @@ If stale links exist in `~/.config/hypr` after a layout change, run:
 
 ## Launcher
 
-Walker is the launcher/menu target, matching Omarchy's current launcher direction. It is not in the official Arch repositories on this system, so install it from the AUR:
+Wofi is the launcher and lightweight menu target. `SUPER+D` and `SUPER+Space` run `wofi --show drun`. `dotfiles-power-menu` uses `wofi --dmenu`, with a plain shell menu inside the existing Ghostty popup retained as a fallback.
+
+Obsolete launcher packages can be removed after switching:
 
 ```sh
-paru -S walker-bin
-```
-
-or:
-
-```sh
-yay -S walker-bin
-```
-
-Remove the old launcher package when no longer needed:
-
-```sh
-sudo pacman -Rns hyprlauncher
-```
-
-`SUPER+D` and `SUPER+Space` run `walker`. `dotfiles-power-menu` uses `walker --dmenu` when Walker is installed, with a plain shell menu inside the existing Ghostty popup retained as a fallback.
-
-Walker requires Elephant to be running. The user service is checked in at `shared/.config/systemd/user/elephant.service`; after restowing, enable it with:
-
-```sh
-systemctl --user enable --now elephant.service
+sudo pacman -Rns walker-bin elephant hyprlauncher
 ```
 
 ## Network
