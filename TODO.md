@@ -4,7 +4,8 @@ Planned follow-up work, in intended order.
 
 1. GPG key generation and agent config
    - Generate a personal GPG key suitable for Git signing and mail.
-   - Configure `gpg-agent`, `pinentry`, and `GPG_TTY` for Ghostty/Zsh.
+   - Add repo-managed `gpg-agent` guidance after choosing how to avoid managing private key directories with Stow.
+   - Done: add `gnupg`/`pinentry` to the system package baseline and export/update `GPG_TTY` from Zsh.
    - Add GitHub GPG public key upload notes.
 
 2. Git configuration
@@ -39,3 +40,8 @@ Planned follow-up work, in intended order.
    - Add mail stack design around `neomutt`, `isync`/`mbsync`, `msmtp`, `notmuch`, and GPG.
    - Keep secrets out of Git.
    - Document send/receive/indexing workflow.
+
+9. Neovim follow-up
+   - Done: align LazyVim with the Everforest system theme.
+   - Done: enable LazyVim extras for Go, Node.js, JavaScript, TypeScript, Rust, C, and C++.
+   - Decide whether development toolchains belong in `scripts/install-system` or remain documented manual installs.

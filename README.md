@@ -169,11 +169,21 @@ LazyVim lives in the `neovim/.config/nvim` submodule and is stowed separately:
 stow neovim
 ```
 
-After creating the GitHub repo for the Neovim config, update the submodule URL in the parent repo:
+The submodule uses the Everforest Neovim colorscheme to match the system theme
+and enables LazyVim extras for Go, Node.js, JavaScript, TypeScript, Rust, C,
+and C++ development.
+
+Recommended Arch packages for that editor workflow:
 
 ```sh
-git submodule set-url neovim/.config/nvim <neovim-repo-url>
+sudo pacman -S --needed base-devel clang clang-tools-extra cmake gcc gdb go lldb nodejs npm rustup stylua
+rustup default stable
+rustup component add rust-analyzer clippy rustfmt
 ```
+
+LazyVim/Mason manages editor-side language servers, formatters, linters, test
+adapters, and debugger adapters where practical. System packages above provide
+the real compilers, runtimes, build tools, and Rust toolchain components.
 
 ## Power And Idle
 

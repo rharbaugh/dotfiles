@@ -65,7 +65,7 @@ Treat theming as a system-level concern, not a per-program afterthought.
 - Avoid one-off styling unless there is a clear reason.
 - When possible, define theme values in a reusable location and import them into tool-specific configs.
 
-The canonical theme source is `shared/.config/dotfiles/theme.json`. Regenerate app-specific theme fragments with `dotfiles-apply-theme` after changing it.
+The canonical theme source is `shared/.config/dotfiles/theme.json`. Regenerate app-specific theme fragments with `dotfiles-apply-theme` after changing it. The Neovim submodule uses `neanias/everforest-nvim` through LazyVim to match the active Everforest desktop theme.
 
 Hyprland compositor configuration should stay Lua-only: keep `hyprland.lua` as the entrypoint and place required modules under `shared/.config/hypr/lua/`. Plain `.conf` files under `shared/.config/hypr/` are only for separate Hypr ecosystem programs that require them, such as hypridle and hyprsunset.
 
@@ -153,4 +153,5 @@ When working in this repo:
 - Prefer coherent, maintainable configuration over clever shortcuts.
 - Ask before introducing large new dependencies or opinionated framework-level changes.
 - If a task completes a major component or feature, commit the finished changes.
+- For Neovim changes, commit inside `neovim/.config/nvim` first, then commit the updated submodule pointer in the parent repo.
 - If a task is exploratory or partial, do not force a commit unless the user asks.
