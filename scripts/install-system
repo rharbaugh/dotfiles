@@ -21,7 +21,9 @@ packages=(
   cups-browsed
   adwaita-icon-theme
   dconf
+  fd
   ffmpeg
+  fzf
   grim
   ghostty
   greetd
@@ -58,8 +60,10 @@ packages=(
   xdg-desktop-portal-gtk
   xdg-desktop-portal-hyprland
   eza
+  ripgrep
   yazi
   zsh
+  zoxide
 )
 
 pacman -S --needed "${packages[@]}"
