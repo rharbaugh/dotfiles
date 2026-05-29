@@ -41,7 +41,7 @@ packages=(
   slurp
   stow
   ttf-hack-nerd
-  tuigreet
+  greetd-tuigreet
   uwsm
   waybar
   wireguard-tools
