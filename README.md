@@ -7,6 +7,7 @@ The desktop is terminal-first, NetworkManager-backed, and themed around Omarchy 
 ## Layout
 
 - `shared/` is the home-directory Stow package.
+- `neovim/` is a separate home-directory Stow package whose `neovim/.config/nvim` directory is a Git submodule.
 - `system/` contains system-level files intended for `/`, currently greetd.
 - `scripts/` contains repo maintenance and installation helpers.
 - `shared/.config/dotfiles/theme.json` is the canonical theme source.
@@ -28,6 +29,12 @@ Apply home dotfiles as the user:
 
 ```sh
 ./scripts/restow-shared
+```
+
+Apply Neovim config as the user:
+
+```sh
+stow neovim
 ```
 
 The root install script enables NetworkManager, Bluetooth, CUPS, Avahi, cups-browsed, and greetd. It does not install iwd or Impala because NetworkManager is the source of truth for Wi-Fi and WireGuard.
@@ -153,6 +160,20 @@ Expected SSH identity names:
 When either file exists, new interactive Zsh shells add it to the keychain-managed SSH agent so Git can use it. Core aliases include `v` for `nvim`, `ls` as `eza -al --group-directories-first --icons=auto`, and `cat` through `bat --plain --paging=never`.
 
 Shell navigation and search use `zoxide`, `fzf`, `ripgrep`, and `fd` when installed. Ripgrep defaults live in `shared/.config/ripgrep/ripgreprc`. Yazi keeps its normal `yazi` command, and `yy` launches Yazi with shell integration so the parent shell changes to Yazi's final directory on exit.
+
+## Neovim
+
+LazyVim lives in the `neovim/.config/nvim` submodule and is stowed separately:
+
+```sh
+stow neovim
+```
+
+After creating the GitHub repo for the Neovim config, update the submodule URL in the parent repo:
+
+```sh
+git submodule set-url neovim/.config/nvim <neovim-repo-url>
+```
 
 ## Power And Idle
 
