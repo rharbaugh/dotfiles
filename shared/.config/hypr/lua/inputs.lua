@@ -1,4 +1,10 @@
 hl.config({
+    cursor = {
+        no_warps = true,
+        warp_on_change_workspace = 0,
+        warp_on_toggle_special = 0,
+    },
+
     input = {
         kb_layout  = "us",
         kb_variant = "",
