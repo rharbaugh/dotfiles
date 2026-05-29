@@ -1,31 +1,6 @@
 #!/usr/bin/env sh
 set -eu
 
-theme="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/theme.json"
-foreground="#d3c6aa"
-background="#2d353b"
-accent="#7fbbb3"
-
-if [ -r "$theme" ] && command -v jq >/dev/null 2>&1; then
-  foreground="$(jq -r '.colors.foreground' "$theme")"
-  background="$(jq -r '.colors.background' "$theme")"
-  accent="$(jq -r '.colors.accent' "$theme")"
-fi
-
-choose_with_gum() {
-  gum choose \
-    --height 8 \
-    --cursor ">" \
-    --header "[ power ]" \
-    --header.foreground "$accent" \
-    --cursor.foreground "$accent" \
-    --selected.foreground "$background" \
-    --selected.background "$accent" \
-    --item.foreground "$foreground" \
-    --item.background "$background" \
-    "lock" "logout" "restart" "sleep" "hibernate" "shutdown"
-}
-
 choose_with_shell() {
   printf '%s\n' "[ power ]"
   select action in lock logout restart sleep hibernate shutdown; do
@@ -39,8 +14,6 @@ choose_with_walker() {
 
 if command -v walker >/dev/null 2>&1; then
   action="$(choose_with_walker)"
-elif command -v gum >/dev/null 2>&1; then
-  action="$(choose_with_gum)"
 else
   action="$(choose_with_shell)"
 fi

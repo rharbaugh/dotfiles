@@ -132,7 +132,7 @@ Remove the old launcher package when no longer needed:
 sudo pacman -Rns hyprlauncher
 ```
 
-`SUPER+D` and `SUPER+Space` run `walker`. `dotfiles-power-menu` uses `walker --dmenu` when Walker is installed, with the older Gum/Ghostty menu retained as a fallback.
+`SUPER+D` and `SUPER+Space` run `walker`. `dotfiles-power-menu` uses `walker --dmenu` when Walker is installed, with a plain shell menu inside the existing Ghostty popup retained as a fallback.
 
 ## Network
 
@@ -167,7 +167,7 @@ Expected SSH identity names:
 ~/.ssh/git
 ```
 
-When either file exists, new interactive Zsh shells add it to the keychain-managed SSH agent so Git can use it. Core aliases include `v` for `nvim`, `ls` as `eza -al --group-directories-first --icons=auto`, and `cat` through `bat --paging=never`.
+When either file exists, new interactive Zsh shells add it to the keychain-managed SSH agent so Git can use it. Core aliases include `v` for `nvim`, `ls` as `eza -al --group-directories-first --icons=auto`, and `cat` through `bat --plain --paging=never`.
 
 Shell navigation and search use `zoxide`, `fzf`, `ripgrep`, and `fd` when installed. Ripgrep defaults live in `shared/.config/ripgrep/ripgreprc`. Yazi keeps its normal `yazi` command, and `yy` launches Yazi with shell integration so the parent shell changes to Yazi's final directory on exit.
 
