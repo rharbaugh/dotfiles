@@ -11,7 +11,6 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(settings.launcher))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(settings.tui("bluetui", "Bluetooth")))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(settings.tui("dotfiles-tui nmtui", "Wi-Fi")))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("dotfiles-power lock"))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("dotfiles-power lock"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("dotfiles-toggle-power-menu"))
 hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))
@@ -20,6 +19,10 @@ hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.exec_cmd("hyprctl dispatch movewindow l"))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.exec_cmd("hyprctl dispatch movewindow r"))
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.exec_cmd("hyprctl dispatch movewindow u"))
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.exec_cmd("hyprctl dispatch movewindow d"))
 
 for i = 1, 10 do
     local key = i % 10
