@@ -1,0 +1,97 @@
+# Dynamic output profiles.
+#
+# Fill in the home Dell serial/model once docked:
+#   shikanectl export
+# or:
+#   hyprctl monitors all
+#
+# shikane chooses the most exact profile whose outputs match every connected
+# display. The docked profile should become more exact than roaming once the
+# Dell serial is filled in.
+
+[[profile]]
+name = "laptop"
+
+    [[profile.output]]
+    search = "n=eDP-1"
+    enable = true
+    mode = "best"
+    position = "0,0"
+    scale = 1.33
+
+[[profile]]
+name = "docked-home-dell"
+
+    [[profile.output]]
+    search = "n=eDP-1"
+    enable = false
+
+    [[profile.output]]
+    search = "s=TODO_HOME_DELL_SERIAL"
+    enable = true
+    mode = "best"
+    position = "0,0"
+    scale = 1.0
+
+[[profile]]
+name = "roaming-1-external"
+
+    [[profile.output]]
+    search = "n=eDP-1"
+    enable = true
+    mode = "best"
+    scale = 1.33
+
+    [[profile.output]]
+    search = "n/^(DP|HDMI-A)-[0-9]+$"
+    enable = true
+    mode = "best"
+    scale = 1.0
+
+[[profile]]
+name = "roaming-2-external"
+
+    [[profile.output]]
+    search = "n=eDP-1"
+    enable = true
+    mode = "best"
+    scale = 1.33
+
+    [[profile.output]]
+    search = "n/^(DP|HDMI-A)-[0-9]+$"
+    enable = true
+    mode = "best"
+    scale = 1.0
+
+    [[profile.output]]
+    search = "n/^(DP|HDMI-A)-[0-9]+$"
+    enable = true
+    mode = "best"
+    scale = 1.0
+
+[[profile]]
+name = "roaming-3-external"
+
+    [[profile.output]]
+    search = "n=eDP-1"
+    enable = true
+    mode = "best"
+    scale = 1.33
+
+    [[profile.output]]
+    search = "n/^(DP|HDMI-A)-[0-9]+$"
+    enable = true
+    mode = "best"
+    scale = 1.0
+
+    [[profile.output]]
+    search = "n/^(DP|HDMI-A)-[0-9]+$"
+    enable = true
+    mode = "best"
+    scale = 1.0
+
+    [[profile.output]]
+    search = "n/^(DP|HDMI-A)-[0-9]+$"
+    enable = true
+    mode = "best"
+    scale = 1.0

@@ -141,3 +141,31 @@ The Hyprland wiki's systemd startup page says that, in a UWSM-managed session, a
 Autostart uses UWSM when available and active, with a direct fallback otherwise. This keeps the config usable from both UWSM-managed and plain Hyprland sessions.
 
 Choose `hyprland (uwsm-managed)` in greetd/display-manager sessions when available.
+
+## Displays
+
+Dynamic dock and roaming display profiles are handled by shikane:
+
+```text
+shared/.config/shikane/config.toml
+```
+
+Profiles:
+
+- `laptop`: only `eDP-1`, best mode, scale `1.33`.
+- `docked-home-dell`: disables `eDP-1` and enables the home Dell monitor. Replace `TODO_HOME_DELL_SERIAL` once docked.
+- `roaming-*`: keeps `eDP-1` enabled and enables one to three generic external `DP-*`/`HDMI-A-*` outputs at best mode.
+
+When docked at home, discover the exact monitor attributes:
+
+```sh
+hyprctl monitors all
+shikanectl export
+```
+
+Then update the Dell `search` field in `shared/.config/shikane/config.toml`, run:
+
+```sh
+./scripts/restow-shared
+systemctl --user restart shikane.service
+```

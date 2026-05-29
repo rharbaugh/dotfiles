@@ -37,6 +37,7 @@ packages=(
   power-profiles-daemon
   sane
   sane-airscan
+  shikane
   slurp
   stow
   ttf-hack-nerd
