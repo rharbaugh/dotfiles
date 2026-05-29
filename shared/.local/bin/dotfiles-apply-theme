@@ -21,8 +21,9 @@ strip_hash() {
 }
 
 name="$(jq -r '.name' "$theme_file")"
+theme_label="$(jq -r 'if .slug then .slug + ".json" else empty end' "$theme_file")"
+[ -n "$theme_label" ] || theme_label="$(basename "$theme_file")"
 font_family="$(jq -r '.font_family' "$theme_file")"
-tuigreet_theme="$(jq -r '.tuigreet.theme' "$theme_file")"
 
 accent="$(color accent)"
 background="$(color background)"
@@ -38,6 +39,7 @@ orange="$(color orange)"
 purple="$(color purple)"
 cyan="$(color cyan)"
 muted="$(color muted)"
+tuigreet_theme="border=$accent;text=$foreground;prompt=$warning;time=$accent;action=$cyan;button=$warning;container=$background;input=$foreground"
 
 mkdir -p \
   "$target/ghostty" \
