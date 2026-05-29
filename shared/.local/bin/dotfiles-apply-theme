@@ -91,7 +91,7 @@ mkdir -p \
   printf 'actions=1\n'
   printf 'default-timeout=5000\n'
   printf 'ignore-timeout=0\n'
-  printf 'width=360\n'
+  printf 'width=460\n'
   printf 'height=120\n'
   printf 'margin=8\n'
   printf 'padding=10\n'
