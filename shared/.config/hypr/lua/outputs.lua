@@ -4,7 +4,7 @@ hl.monitor({
     output   = "eDP-1",
     mode     = "highres@highrr",
     position = "auto",
-    scale    = "1.33",
+    scale    = "1.3333333333333333",
 })
 
 hl.monitor({

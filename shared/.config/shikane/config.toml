@@ -17,7 +17,7 @@ name = "laptop"
     enable = true
     mode = "best"
     position = "0,0"
-    scale = 1.33
+    scale = 1.3333333333333333
 
 [[profile]]
 name = "docked-home-dell"
@@ -40,7 +40,7 @@ name = "roaming-1-external"
     search = "n=eDP-1"
     enable = true
     mode = "best"
-    scale = 1.33
+    scale = 1.3333333333333333
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
@@ -55,7 +55,7 @@ name = "roaming-2-external"
     search = "n=eDP-1"
     enable = true
     mode = "best"
-    scale = 1.33
+    scale = 1.3333333333333333
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
@@ -76,7 +76,7 @@ name = "roaming-3-external"
     search = "n=eDP-1"
     enable = true
     mode = "best"
-    scale = 1.33
+    scale = 1.3333333333333333
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"

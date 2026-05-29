@@ -8,7 +8,7 @@ The desktop is terminal-first, NetworkManager-backed, and themed around Omarchy 
 
 - `shared/` is the home-directory Stow package.
 - `neovim/` is a separate home-directory Stow package whose `neovim/.config/nvim` directory is a Git submodule.
-- `system/` contains system-level files intended for `/`, currently greetd.
+- `system/` contains system-level files intended for `/`, currently greetd and the virtual console palette.
 - `scripts/` contains repo maintenance and installation helpers.
 - `shared/.config/dotfiles/theme.json` is the canonical theme source.
 - `shared/.config/hypr/hyprland.lua` is the Hyprland entrypoint.
@@ -87,7 +87,7 @@ The generator writes:
 - Hyprlock colors: `shared/.config/hypr/ecosystem/hyprlock-theme.conf`
 - Mako notifications: `shared/.config/mako/config`
 - Launcher: Wofi is toggled from `SUPER+D` or `SUPER+Space`.
-- Tuigreet theme env and greetd config fragments.
+- Tuigreet theme env, greetd config fragments, and the virtual console palette used by the login TTY.
 - Qt control palettes: `shared/.config/qt5ct/` and `shared/.config/qt6ct/`
 
 Dark mode is advertised through GTK settings, `gsettings`, and XDG Desktop Portal's GTK settings backend. GUI apps and browsers that follow the system color scheme should see `prefer-dark` after the session restarts. GTK uses `Adwaita-dark`; Qt uses Fusion plus the generated qtct dark palette, with Qt6 active by default through `QT_QPA_PLATFORMTHEME=qt6ct`.
@@ -217,7 +217,7 @@ shared/.config/shikane/config.toml
 
 Profiles:
 
-- `laptop`: only `eDP-1`, best mode, scale `1.33`.
+- `laptop`: only `eDP-1`, best mode, scale `1.3333333333333333` (`160/120`, the exact fractional step Hyprland expects for roughly 133%).
 - `docked-home-dell`: disables `eDP-1` and enables the home Dell monitor. Replace `TODO_HOME_DELL_SERIAL` once docked.
 - `roaming-*`: keeps `eDP-1` enabled and enables one to three generic external `DP-*`/`HDMI-A-*` outputs at best mode.
 

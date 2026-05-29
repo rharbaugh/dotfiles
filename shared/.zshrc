@@ -60,6 +60,11 @@ if command -v rg >/dev/null 2>&1; then
   export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/ripgreprc"
 fi
 
+if command -v gpg-connect-agent >/dev/null 2>&1; then
+  export GPG_TTY="$(tty)"
+  gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+fi
+
 if command -v fd >/dev/null 2>&1; then
   alias find='fd'
 fi

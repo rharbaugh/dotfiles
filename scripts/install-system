@@ -27,6 +27,7 @@ packages=(
   grim
   ghostty
   git
+  gnupg
   gst-libav
   gst-plugins-bad
   gst-plugins-base
@@ -63,6 +64,7 @@ packages=(
   pipewire-audio
   pipewire-jack
   pipewire-pulse
+  pinentry
   power-profiles-daemon
   qt5-wayland
   qt5ct
@@ -110,7 +112,12 @@ if [[ -f /etc/greetd/config.toml && ! -f /etc/greetd/config.toml.bak ]]; then
 fi
 
 install -Dm644 "$repo/system/etc/greetd/config.toml" /etc/greetd/config.toml
+install -Dm644 "$repo/system/etc/vtrgb-dotfiles" /etc/vtrgb-dotfiles
 install -Dm644 "$repo/system/etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf" /etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf
+install -Dm644 "$repo/system/etc/systemd/system/greetd.service.d/10-dotfiles-vtrgb.conf" /etc/systemd/system/greetd.service.d/10-dotfiles-vtrgb.conf
+
+systemctl daemon-reload
+setvtrgb /etc/vtrgb-dotfiles || true
 
 systemctl enable --now NetworkManager.service
 systemctl enable --now bluetooth.service
