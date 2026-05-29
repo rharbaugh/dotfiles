@@ -1,0 +1,81 @@
+#!/usr/bin/env sh
+set -eu
+
+lock_cmd="hyprlock --config ${XDG_CONFIG_HOME:-$HOME/.config}/hypr/ecosystem/hyprlock.conf"
+
+on_battery() {
+  has_battery=false
+
+  for supply in /sys/class/power_supply/*; do
+    [ -e "$supply/type" ] || continue
+
+    type="$(cat "$supply/type")"
+    if [ "$type" = "Battery" ]; then
+      has_battery=true
+      continue
+    fi
+
+    if [ -e "$supply/online" ] && [ "$(cat "$supply/online")" = "1" ]; then
+      return 1
+    fi
+  done
+
+  [ "$has_battery" = true ] || return 1
+  return 0
+}
+
+lock() {
+  pidof hyprlock >/dev/null 2>&1 || sh -c "$lock_cmd"
+}
+
+logout() {
+  if command -v hyprshutdown >/dev/null 2>&1; then
+    hyprshutdown -t "Logging out..."
+  else
+    hyprctl dispatch 'hl.dsp.exit()'
+  fi
+}
+
+restart() {
+  if command -v hyprshutdown >/dev/null 2>&1; then
+    hyprshutdown -t "Restarting..." --post-cmd "systemctl reboot"
+  else
+    systemctl reboot
+  fi
+}
+
+shutdown() {
+  if command -v hyprshutdown >/dev/null 2>&1; then
+    hyprshutdown -t "Shutting down..." --post-cmd "systemctl poweroff"
+  else
+    systemctl poweroff
+  fi
+}
+
+sleep_system() {
+  lock
+  systemctl suspend-then-hibernate || systemctl suspend
+}
+
+hibernate() {
+  lock
+  systemctl hibernate
+}
+
+case "${1:-}" in
+  lock) lock ;;
+  logout) logout ;;
+  restart) restart ;;
+  sleep) sleep_system ;;
+  hibernate) hibernate ;;
+  shutdown) shutdown ;;
+  idle-suspend)
+    if on_battery; then
+      sleep_system
+    fi
+    ;;
+  *)
+    printf '%s\n' "usage: dotfiles-power {lock|logout|restart|sleep|hibernate|shutdown|idle-suspend}" >&2
+    exit 2
+    ;;
+esac

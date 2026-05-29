@@ -58,6 +58,7 @@ The generator writes:
 - Waybar colors: `shared/.config/waybar/theme.css`
 - Hyprland Lua theme: `shared/.config/hypr/lua/theme.lua`
 - Hyprlock colors: `shared/.config/hypr/ecosystem/hyprlock-theme.conf`
+- Mako notifications: `shared/.config/mako/config`
 - Walker CSS variables: `shared/.config/walker/themes/theme.css`
 - Tuigreet theme env and greetd config fragments.
 
@@ -110,6 +111,28 @@ nmcli
 ```
 
 Waybar Wi-Fi actions and `SUPER+SHIFT+W` launch `nmtui` in Ghostty through `dotfiles-tui`, which applies the current theme to newt-based TUIs via `NEWT_COLORS`.
+
+## Power And Idle
+
+Hypridle is configured for:
+
+- 5 minutes: lock and dim.
+- 10 minutes: display off.
+- 15 minutes: suspend-then-hibernate only when on battery.
+- When plugged in: stop at locked plus display off; do not suspend or hibernate.
+- 15 minutes after a battery suspend: hibernate via systemd sleep settings.
+
+Power actions are centralized in `dotfiles-power`. The TUI-style power menu is `dotfiles-power-menu`, and `dotfiles-toggle-power-menu` is used by both `SUPER+SHIFT+P` and the Waybar power icon.
+
+## Screenshots
+
+Region screenshot to clipboard:
+
+```text
+SUPER+SHIFT+S
+```
+
+Requires `grim`, `slurp`, and `wl-clipboard`.
 
 ## UWSM
 

@@ -19,26 +19,32 @@ packages=(
   cups
   cups-browsed
   ffmpeg
+  grim
   ghostty
   greetd
+  gum
   hypridle
   hyprland
   hyprlauncher
   hyprlock
   hyprpaper
+  hyprshutdown
   hyprsunset
   jq
+  mako
   networkmanager
   playerctl
   power-profiles-daemon
   sane
   sane-airscan
+  slurp
   stow
   ttf-hack-nerd
   tuigreet
   uwsm
   waybar
   wireguard-tools
+  wl-clipboard
   yazi
 )
 
@@ -49,6 +55,7 @@ if [[ -f /etc/greetd/config.toml && ! -f /etc/greetd/config.toml.bak ]]; then
 fi
 
 install -Dm644 "$repo/system/etc/greetd/config.toml" /etc/greetd/config.toml
+install -Dm644 "$repo/system/etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf" /etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf
 
 systemctl enable --now NetworkManager.service
 systemctl enable --now bluetooth.service

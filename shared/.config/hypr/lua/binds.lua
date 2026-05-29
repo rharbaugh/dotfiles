@@ -10,8 +10,10 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(settings.launcher))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(settings.launcher))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(settings.tui("bluetui", "Bluetooth")))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(settings.tui("dotfiles-tui nmtui", "Wi-Fi")))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock --config ~/.config/hypr/ecosystem/hyprlock.conf"))
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("dotfiles-power lock"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("dotfiles-power lock"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("dotfiles-toggle-power-menu"))
 hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))
 
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
@@ -26,7 +28,7 @@ for i = 1, 10 do
 end
 
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("dotfiles-screenshot-region"))
 
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))

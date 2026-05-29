@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+set -eu
+
+theme="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/theme.json"
+foreground="#ffcead"
+background="#060B1E"
+accent="#7d82d9"
+surface="#3C486D"
+
+if [ -r "$theme" ] && command -v jq >/dev/null 2>&1; then
+  foreground="$(jq -r '.colors.foreground' "$theme")"
+  background="$(jq -r '.colors.background' "$theme")"
+  accent="$(jq -r '.colors.accent' "$theme")"
+  surface="$(jq -r '.colors.surface' "$theme")"
+fi
+
+choose_with_gum() {
+  gum choose \
+    --height 8 \
+    --cursor ">" \
+    --header "[ power ]" \
+    --header.foreground "$accent" \
+    --cursor.foreground "$accent" \
+    --selected.foreground "$background" \
+    --selected.background "$accent" \
+    --item.foreground "$foreground" \
+    --item.background "$background" \
+    --match.foreground "$foreground" \
+    --match.background "$surface" \
+    "lock" "logout" "restart" "sleep" "hibernate" "shutdown"
+}
+
+choose_with_shell() {
+  printf '%s\n' "[ power ]"
+  select action in lock logout restart sleep hibernate shutdown; do
+    [ -n "$action" ] && printf '%s\n' "$action" && return
+  done
+}
+
+if command -v gum >/dev/null 2>&1; then
+  action="$(choose_with_gum)"
+else
+  action="$(choose_with_shell)"
+fi
+
+[ -n "$action" ] || exit 0
+exec dotfiles-power "$action"

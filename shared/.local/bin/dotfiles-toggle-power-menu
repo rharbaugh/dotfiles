@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -eu
+
+if pgrep -u "$(id -u)" -f "[d]otfiles-power-menu" >/dev/null 2>&1; then
+  pkill -u "$(id -u)" -f "[d]otfiles-power-menu"
+  exit 0
+fi
+
+exec ghostty -e sh -lc 'printf "\033]2;Power\007"; exec dotfiles-power-menu'
