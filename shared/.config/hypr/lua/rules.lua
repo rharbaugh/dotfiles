@@ -44,7 +44,7 @@ hl.window_rule({
 })
 
 hl.layer_rule({
-    name  = "hyprlauncher-blur",
-    match = { namespace = "^hyprlauncher$" },
+    name  = "walker-blur",
+    match = { namespace = "^walker$" },
     blur  = true,
 })

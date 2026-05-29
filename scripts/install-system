@@ -30,7 +30,6 @@ packages=(
   gum
   hypridle
   hyprland
-  hyprlauncher
   hyprlock
   hyprpaper
   hyprshutdown

@@ -74,10 +74,11 @@ The generator writes:
 
 - Ghostty colors: `shared/.config/ghostty/theme.conf`
 - Waybar colors: `shared/.config/waybar/theme.css`
+- Yazi colors: `shared/.config/yazi/theme.toml`
 - Hyprland Lua theme: `shared/.config/hypr/lua/theme.lua`
 - Hyprlock colors: `shared/.config/hypr/ecosystem/hyprlock-theme.conf`
 - Mako notifications: `shared/.config/mako/config`
-- Launcher: `hyprlauncher` is started as a daemon and toggled from `SUPER+D` or `SUPER+Space`.
+- Launcher: Walker is toggled from `SUPER+D` or `SUPER+Space`.
 - Tuigreet theme env and greetd config fragments.
 - Qt control palettes: `shared/.config/qt5ct/` and `shared/.config/qt6ct/`
 
@@ -110,6 +111,28 @@ If stale links exist in `~/.config/hypr` after a layout change, run:
 ```sh
 ./scripts/restow-shared
 ```
+
+## Launcher
+
+Walker is the launcher/menu target, matching Omarchy's current launcher direction. It is not in the official Arch repositories on this system, so install it from the AUR:
+
+```sh
+paru -S walker-bin
+```
+
+or:
+
+```sh
+yay -S walker-bin
+```
+
+Remove the old launcher package when no longer needed:
+
+```sh
+sudo pacman -Rns hyprlauncher
+```
+
+`SUPER+D` and `SUPER+Space` run `walker`. `dotfiles-power-menu` uses `walker --dmenu` when Walker is installed, with the older Gum/Ghostty menu retained as a fallback.
 
 ## Network
 

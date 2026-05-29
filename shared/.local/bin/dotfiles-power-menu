@@ -33,7 +33,13 @@ choose_with_shell() {
   done
 }
 
-if command -v gum >/dev/null 2>&1; then
+choose_with_walker() {
+  printf '%s\n' lock logout restart sleep hibernate shutdown | walker --dmenu
+}
+
+if command -v walker >/dev/null 2>&1; then
+  action="$(choose_with_walker)"
+elif command -v gum >/dev/null 2>&1; then
   action="$(choose_with_gum)"
 else
   action="$(choose_with_shell)"
