@@ -37,6 +37,9 @@ hl.monitor({
 local terminal    = "ghostty"
 local fileManager = "dolphin"
 local menu        = "hyprlauncher"
+local function tui(command)
+    return terminal .. " -e " .. command
+end
 
 
 -------------------
@@ -91,16 +94,24 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -----------------------
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+local ethereal = {
+    accent     = "rgba(7d82d9ee)",
+    foreground = "rgba(ffceadee)",
+    background = "rgba(060B1Eee)",
+    surface    = "rgba(3C486Daa)",
+    alert      = "rgba(ED5B5Aee)",
+}
+
 hl.config({
     general = {
-        gaps_in  = 2,
-        gaps_out = 4,
+        gaps_in  = 3,
+        gaps_out = 6,
 
         border_size = 1,
 
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border   = ethereal.accent,
+            inactive_border = ethereal.surface,
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -113,7 +124,7 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 0,
+        rounding       = 4,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
@@ -122,16 +133,16 @@ hl.config({
 
         shadow = {
             enabled      = true,
-            range        = 4,
+            range        = 12,
             render_power = 3,
-            color        = 0xee1a1a1a,
+            color        = "rgba(060B1E99)",
         },
 
         blur = {
             enabled   = true,
-            size      = 3,
-            passes    = 1,
-            vibrancy  = 0.1696,
+            size      = 4,
+            passes    = 2,
+            vibrancy  = 0.12,
         },
     },
 
@@ -269,6 +280,8 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(tui("bluetui")))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(tui("impala")))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))    -- dwindle only
 
