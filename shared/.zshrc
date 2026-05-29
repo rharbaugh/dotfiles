@@ -35,7 +35,7 @@ if command -v keychain >/dev/null 2>&1; then
   done
 
   if (( ${#ssh_keys[@]} )); then
-    eval "$(keychain --eval --quiet --agents ssh "${ssh_keys[@]}")"
+    eval "$(keychain --eval --quiet "${ssh_keys[@]}")"
   fi
 fi
 
