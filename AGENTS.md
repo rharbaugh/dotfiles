@@ -116,6 +116,20 @@ stow --no --verbose <package>
 
 Use real validation commands for the program being changed when available, such as format checks, config parsers, or service reload tests.
 
+## Package Workflow
+
+Treat `scripts/install-system` as the canonical manifest for official Arch repository packages that make up this desktop environment. Add packages there when they are part of the reproducible Hyprland system baseline, then expect the user to apply them with:
+
+```sh
+sudo ./scripts/install-system
+```
+
+The script uses `pacman -S --needed`, so it is intended to be re-run safely. It may also apply root-owned system files and enable services, so do not turn it into a general-purpose package helper wrapper.
+
+AUR packages should stay separate from `scripts/install-system`. Prefer documenting them in README/TODO notes or, if the list grows enough to justify it, a dedicated AUR helper script. Use `paru` or `yay` as the interactive user-level helper, never via `sudo`, and review PKGBUILDs before installing new AUR packages.
+
+Removing a package from `scripts/install-system` only removes it from the repo's declared baseline. It does not uninstall the package from the machine. Uninstalls should remain explicit manual actions unless the user directly asks for removal.
+
 ## Documentation Expectations
 
 As each program is configured, document the important choices close to the relevant files or in a concise repo note. Useful documentation includes:

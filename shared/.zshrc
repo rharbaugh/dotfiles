@@ -64,6 +64,10 @@ if command -v fd >/dev/null 2>&1; then
   alias find='fd'
 fi
 
+if command -v ykman >/dev/null 2>&1; then
+  alias yk='ykman oath accounts code'
+fi
+
 if command -v fzf >/dev/null 2>&1; then
   export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:---height 40% --layout=reverse --border --cycle}"
   if command -v fd >/dev/null 2>&1; then

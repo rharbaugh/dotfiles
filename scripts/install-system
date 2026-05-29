@@ -26,34 +26,69 @@ packages=(
   fzf
   grim
   ghostty
+  git
+  gst-libav
+  gst-plugins-bad
+  gst-plugins-base
+  gst-plugins-good
+  gst-plugins-ugly
   greetd
   hypridle
   hyprland
   hyprlock
   hyprpaper
+  hyprpolkitagent
   hyprshutdown
   hyprsunset
+  ipp-usb
   jq
   keychain
   mako
+  man-db
+  man-pages
+  mpv
+  mpv-mpris
   neovim
   networkmanager
+  ncspot
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
+  noto-fonts-extra
+  nss-mdns
+  openssh
   playerctl
+  pipewire
+  pipewire-alsa
+  pipewire-audio
+  pipewire-jack
+  pipewire-pulse
   power-profiles-daemon
+  qt5-wayland
   qt5ct
+  qt6-wayland
   qt6ct
   sane
   sane-airscan
   shikane
   slurp
   starship
+  spotify-player
   stow
+  system-config-printer
+  termusic
   ttf-hack-nerd
   greetd-tuigreet
   uwsm
+  vlc
+  vlc-gui-ncurses
+  vlc-plugins-all
   waybar
+  wget
   wireguard-tools
+  wireplumber
   wl-clipboard
+  woff2-font-awesome
   wofi
   xdg-desktop-portal
   xdg-desktop-portal-gtk
@@ -61,11 +96,14 @@ packages=(
   eza
   ripgrep
   yazi
+  yt-dlp
+  yubikey-manager
   zsh
   zoxide
 )
 
 pacman -S --needed "${packages[@]}"
+pacman -D --asexplicit "${packages[@]}"
 
 if [[ -f /etc/greetd/config.toml && ! -f /etc/greetd/config.toml.bak ]]; then
   cp /etc/greetd/config.toml /etc/greetd/config.toml.bak
