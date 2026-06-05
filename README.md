@@ -130,6 +130,12 @@ The modules are split by purpose:
 - `settings.lua`
 - `theme.lua`
 
+Keyboard input uses the US layout with Right Alt as the Compose key. For Spanish
+text, press Right Alt, then a compose sequence such as `'` + `a` for `á`, `~` +
+`n` for `ñ`, `?` + `?` for `¿`, or `!` + `!` for `¡`. GTK apps such as
+Ghostty use `GTK_IM_MODULE=simple` from the Hyprland environment so compose
+sequences keep working under Wayland.
+
 If stale links exist in `~/.config/hypr` after a layout change, run:
 
 ```sh

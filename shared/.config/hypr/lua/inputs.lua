@@ -9,7 +9,7 @@ hl.config({
         kb_layout  = "us",
         kb_variant = "",
         kb_model   = "",
-        kb_options = "",
+        kb_options = "compose:ralt",
         kb_rules   = "",
         repeat_rate  = 40,
         repeat_delay = 400,
