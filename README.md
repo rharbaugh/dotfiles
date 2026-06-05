@@ -6,9 +6,12 @@ The desktop is terminal-first, NetworkManager-backed, and themed around Omarchy 
 
 ## Layout
 
-- `shared/` is the home-directory Stow package.
+- `shared/` is the base home-directory Stow package.
+- `laptop/` is the Framework/mobile home-directory Stow profile.
+- `desktop/` is reserved for fixed-desktop home-directory overrides.
 - `neovim/` is a separate home-directory Stow package whose `neovim/.config/nvim` directory is a Git submodule.
-- `system/` contains system-level files intended for `/`, currently greetd and the virtual console palette.
+- `system/` contains shared system-level files intended for `/`, currently greetd and the virtual console palette.
+- `system-laptop/` contains laptop-only system files, currently Framework charge limiting and suspend/hibernate timing.
 - `scripts/` contains repo maintenance and installation helpers.
 - `shared/.config/dotfiles/theme.json` is the canonical theme source.
 - `shared/.config/hypr/hyprland.lua` is the Hyprland entrypoint.
@@ -19,16 +22,28 @@ Hyprland compositor configuration should stay Lua-only. Some separate Hypr ecosy
 
 ## First Install
 
-Install system packages and system files as root:
+Install system packages and system files as root. The default profile is `laptop`:
 
 ```sh
 sudo ./scripts/install-system
 ```
 
-Apply home dotfiles as the user:
+For a fixed desktop that should avoid Framework/shikane/battery-limit pieces:
+
+```sh
+sudo ./scripts/install-system desktop
+```
+
+Apply home dotfiles as the user. The default profile is `laptop`:
 
 ```sh
 ./scripts/restow-shared
+```
+
+For a fixed desktop:
+
+```sh
+./scripts/restow-shared desktop
 ```
 
 Apply Neovim config as the user:
@@ -37,7 +52,7 @@ Apply Neovim config as the user:
 stow neovim
 ```
 
-The root install script enables NetworkManager, Bluetooth, CUPS, Avahi, cups-browsed, greetd, and the Framework battery charge-limit service. It does not install iwd or Impala because NetworkManager is the source of truth for Wi-Fi and WireGuard.
+The root install script enables NetworkManager, Bluetooth, CUPS, Avahi, cups-browsed, and greetd. The `laptop` profile also installs `framework-system`, installs shikane, and enables the Framework battery charge-limit service. It does not install iwd or Impala because NetworkManager is the source of truth for Wi-Fi and WireGuard.
 
 ## Theme Workflow
 
@@ -250,7 +265,7 @@ Power actions are centralized in `power`. The TUI-style floating power menu is `
 
 Power profiles use `power-profiles-daemon`. The Waybar power profile icon opens `power-profile-menu`, which selects `balanced`, `power-saver`, or `performance`.
 
-Framework battery charge limiting uses the official `framework_tool` from `framework-system`, not sysfs charge threshold files. The default daily cap is 80%, applied by `battery-limit.service` at boot:
+Framework battery charge limiting is part of the `laptop` profile. It uses the official `framework_tool` from `framework-system`, not sysfs charge threshold files. The default daily cap is 80%, applied by `battery-limit.service` at boot:
 
 ```sh
 battery-limit status
@@ -297,10 +312,10 @@ Waybar is skipped by the Hyprland autostart in UWSM-managed sessions so the user
 
 ## Displays
 
-Dynamic dock and roaming display profiles are handled by shikane:
+Dynamic dock and roaming display profiles are part of the `laptop` profile and handled by shikane:
 
 ```text
-shared/.config/shikane/config.toml
+laptop/.config/shikane/config.toml
 ```
 
 Profiles:
@@ -316,9 +331,24 @@ hyprctl monitors all
 shikanectl export
 ```
 
-Then update the Dell `search` field in `shared/.config/shikane/config.toml`, run:
+Then update the Dell `search` field in `laptop/.config/shikane/config.toml`, run:
 
 ```sh
 ./scripts/restow-shared
 systemctl --user restart shikane.service
+```
+
+## Desktop Profile
+
+The `desktop` package is intentionally minimal for now. A desktop with one stable monitor should put its fixed Hyprland monitor rules in:
+
+```text
+desktop/.config/hypr/lua/profile_outputs.lua
+```
+
+The shared Hyprland entrypoint loads `profile_outputs.lua` when the selected profile provides it. Install a desktop with:
+
+```sh
+sudo ./scripts/install-system desktop
+./scripts/restow-shared desktop
 ```

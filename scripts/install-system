@@ -7,6 +7,15 @@ if (( EUID != 0 )); then
 fi
 
 repo="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+profile="${1:-laptop}"
+
+case "$profile" in
+  laptop|desktop) ;;
+  *)
+    echo "usage: install-system [laptop|desktop]" >&2
+    exit 2
+    ;;
+esac
 
 packages=(
   avahi
@@ -25,7 +34,6 @@ packages=(
   ffmpeg
   ffmpegthumbnailer
   firefox
-  framework-system
   fwupd
   fzf
   grim
@@ -79,7 +87,6 @@ packages=(
   rbw
   sane
   sane-airscan
-  shikane
   slurp
   starship
   spotify-player
@@ -116,8 +123,22 @@ packages=(
   zathura-pdf-mupdf
 )
 
-pacman -S --needed "${packages[@]}"
-pacman -D --asexplicit "${packages[@]}"
+profile_packages=()
+
+case "$profile" in
+  laptop)
+    profile_packages=(
+      framework-system
+      shikane
+    )
+    ;;
+  desktop)
+    profile_packages=()
+    ;;
+esac
+
+pacman -S --needed "${packages[@]}" "${profile_packages[@]}"
+pacman -D --asexplicit "${packages[@]}" "${profile_packages[@]}"
 
 if [[ -f /etc/greetd/config.toml && ! -f /etc/greetd/config.toml.bak ]]; then
   cp /etc/greetd/config.toml /etc/greetd/config.toml.bak
@@ -125,9 +146,12 @@ fi
 
 install -Dm644 "$repo/system/etc/greetd/config.toml" /etc/greetd/config.toml
 install -Dm644 "$repo/system/etc/vtrgb-dotfiles" /etc/vtrgb-dotfiles
-install -Dm644 "$repo/system/etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf" /etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf
 install -Dm644 "$repo/system/etc/systemd/system/greetd.service.d/10-dotfiles-vtrgb.conf" /etc/systemd/system/greetd.service.d/10-dotfiles-vtrgb.conf
-install -Dm644 "$repo/system/etc/systemd/system/battery-limit.service" /etc/systemd/system/battery-limit.service
+
+if [[ "$profile" == "laptop" ]]; then
+  install -Dm644 "$repo/system-laptop/etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf" /etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf
+  install -Dm644 "$repo/system-laptop/etc/systemd/system/battery-limit.service" /etc/systemd/system/battery-limit.service
+fi
 
 systemctl daemon-reload
 setvtrgb /etc/vtrgb-dotfiles || true
@@ -138,11 +162,14 @@ systemctl enable --now cups.service
 systemctl enable --now avahi-daemon.service
 systemctl enable --now cups-browsed.service
 systemctl enable --now greetd.service
-systemctl enable --now battery-limit.service
+
+if [[ "$profile" == "laptop" ]]; then
+  systemctl enable --now battery-limit.service
+fi
 
 if systemctl list-unit-files sddm.service >/dev/null 2>&1; then
   systemctl disable --now sddm.service || true
 fi
 
 echo "System packages and services installed."
-echo "Run './scripts/restow-shared' as the user to apply home dotfiles."
+echo "Run './scripts/restow-shared $profile' as the user to apply home dotfiles."

@@ -2,10 +2,37 @@
 set -euo pipefail
 
 repo="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+profile="${1:-laptop}"
+
+case "$profile" in
+  laptop|desktop) ;;
+  *)
+    echo "usage: restow-shared [laptop|desktop]" >&2
+    exit 2
+    ;;
+esac
+
 cd "$repo"
 
-stow -D shared
+unfold_repo_link() {
+  rel="$1"
+  link="$HOME/$rel"
+
+  if [[ -L "$link" && "$(readlink "$link")" == *".dotfiles/shared/$rel" ]]; then
+    rm "$link"
+    mkdir -p "$link"
+  fi
+}
+
+# These directories are shared by the base package and at least one profile.
+# Older installs may have them as folded symlinks into shared/.
+unfold_repo_link ".config/dotfiles"
+unfold_repo_link ".config/hypr/lua"
+unfold_repo_link ".local/bin"
+
+stow -D shared laptop desktop
 stow shared
+stow "$profile"
 
 old_links=(
   ".local/bin/dotfiles-apply-theme"
@@ -24,7 +51,7 @@ for rel in "${old_links[@]}"; do
   fi
 done
 
-echo "Restowed shared package."
+echo "Restowed shared and $profile packages."
 
 if [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]] && command -v hyprctl >/dev/null 2>&1; then
   if hyprctl reload >/dev/null; then

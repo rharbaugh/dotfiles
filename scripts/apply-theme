@@ -26,5 +26,5 @@ if [[ "$(realpath -m "$theme")" != "$(realpath -m "$active_theme")" ]]; then
 fi
 
 echo "Regenerated theme fragments from $theme"
-echo "Run 'stow shared' or './scripts/restow-shared' to apply them to \$HOME."
-echo "Run 'sudo ./scripts/install-system' to apply regenerated greetd/system files."
+echo "Run './scripts/restow-shared [laptop|desktop]' to apply them to \$HOME."
+echo "Run 'sudo ./scripts/install-system [laptop|desktop]' to apply regenerated greetd/system files."

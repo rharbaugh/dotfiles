@@ -14,6 +14,7 @@ The system is assumed to be migrating from a KDE-oriented setup toward a Hyprlan
 - Desktop/session: Hyprland on Wayland.
 - Hardware baseline: Framework Laptop 13 unless a task states otherwise.
 - Dotfiles manager: GNU Stow.
+- Stow profile packages: `shared/` is the base home package; `laptop/` is for Framework/mobile hardware behavior; `desktop/` is for fixed-desktop overrides.
 - Workflow preference: terminal-based, keyboard-first, minimal mouse dependency.
 - Design preference: coherent system-wide theming across terminal, shell, editor, launcher, bar, notifications, lock screen, file management, and desktop utilities.
 - Theme preference: use Omarchy's Everforest theme where practical, adapted to this repo instead of depending on Omarchy's full theme machinery. Keep Ethereal available as a saved switchable theme.
@@ -23,7 +24,7 @@ The system is assumed to be migrating from a KDE-oriented setup toward a Hyprlan
 
 ## Repository Layout
 
-Use Stow package directories at the repository root. Each package should mirror paths relative to `$HOME`.
+Use Stow package directories at the repository root. Each home package should mirror paths relative to `$HOME`.
 
 Example:
 
@@ -34,9 +35,9 @@ shared/
     waybar/
 ```
 
-Prefer grouping files by installable package or shared concern rather than scattering unrelated configuration together. If a config applies broadly across the system, `shared/` is appropriate. If a tool grows into its own meaningful unit, create a dedicated Stow package for it.
+Prefer grouping files by installable package or shared concern rather than scattering unrelated configuration together. If a config applies broadly across the system, `shared/` is appropriate. Framework/mobile-specific home config belongs in `laptop/`; fixed desktop host overrides belong in `desktop/`. If a tool grows into its own meaningful unit, create a dedicated Stow package for it.
 
-System-level files that do not belong under `$HOME` may live in a separate package such as `system/`, intended to be installed explicitly with a root target such as `sudo stow -t / system`.
+System-level files that do not belong under `$HOME` may live in a separate package such as `system/`, intended to be installed explicitly with a root target such as `sudo stow -t / system`. Laptop-only system files should stay in `system-laptop/` or another clearly profiled system package.
 
 Avoid hard-coding machine-specific paths or secrets. When host-specific behavior is needed, prefer small sourced override files, documented environment variables, or clearly named host packages.
 
@@ -123,8 +124,10 @@ Use real validation commands for the program being changed when available, such 
 Treat `scripts/install-system` as the canonical manifest for official Arch repository packages that make up this desktop environment. Add packages there when they are part of the reproducible Hyprland system baseline, then expect the user to apply them with:
 
 ```sh
-sudo ./scripts/install-system
+sudo ./scripts/install-system [laptop|desktop]
 ```
+
+Keep shared packages in the common manifest and put profile-specific packages in the appropriate profile branch inside the script.
 
 The script uses `pacman -S --needed`, so it is intended to be re-run safely. It may also apply root-owned system files and enable services, so do not turn it into a general-purpose package helper wrapper.
 

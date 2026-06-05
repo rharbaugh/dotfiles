@@ -1,11 +1,5 @@
--- Framework Laptop 13 internal display plus automatic external outputs.
-
-hl.monitor({
-    output   = "eDP-1",
-    mode     = "highres@highrr",
-    position = "auto",
-    scale    = "1.3333333333333333",
-})
+-- Generic output fallback. Profile packages may add a profile_outputs.lua
+-- module for machine-specific monitor rules.
 
 hl.monitor({
     output   = "",

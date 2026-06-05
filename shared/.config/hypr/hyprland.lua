@@ -5,6 +5,7 @@ package.path = config_home .. "/hypr/lua/?.lua;" .. package.path
 
 require("settings")
 require("outputs")
+pcall(require, "profile_outputs")
 require("env")
 require("autostart")
 require("look")
