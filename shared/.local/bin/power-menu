@@ -19,4 +19,4 @@ else
 fi
 
 [ -n "$action" ] || exit 0
-exec dotfiles-power "$action"
+exec power "$action"

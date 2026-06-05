@@ -1,0 +1,90 @@
+#!/usr/bin/env sh
+set -eu
+
+usage() {
+  printf '%s\n' "usage: media [list|menu]" >&2
+  exit 2
+}
+
+list_devices() {
+  lsblk -pr -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS,RM,TYPE
+}
+
+removable_entries() {
+  lsblk -prno NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS,RM,TYPE | awk '
+    $6 == "1" && ($7 == "part" || $7 == "disk") {
+      name=$1; size=$2; fstype=$3; label=$4; mount=$5;
+      if (label == "") label="-";
+      if (mount == "") {
+        printf "mount\t%s\t%s\t%s\t%s\n", name, size, fstype, label;
+      } else {
+        printf "open\t%s\t%s\t%s\t%s\t%s\n", name, size, fstype, label, mount;
+        printf "unmount\t%s\t%s\t%s\t%s\t%s\n", name, size, fstype, label, mount;
+      }
+      printf "power-off\t%s\t%s\t%s\t%s\n", name, size, fstype, label;
+    }
+  '
+}
+
+format_menu() {
+  while IFS="$(printf '\t')" read -r action dev size fstype label mount; do
+    case "$action" in
+      mount) printf 'mount %s  %s  %s  %s\n' "$dev" "$size" "$fstype" "$label" ;;
+      open) printf 'open %s  %s  %s  %s  %s\n' "$dev" "$size" "$fstype" "$label" "$mount" ;;
+      unmount) printf 'unmount %s  %s  %s  %s  %s\n' "$dev" "$size" "$fstype" "$label" "$mount" ;;
+      power-off) printf 'power-off %s  %s  %s  %s\n' "$dev" "$size" "$fstype" "$label" ;;
+    esac
+  done
+}
+
+choose() {
+  entries="$(removable_entries)"
+  if [ -z "$entries" ]; then
+    printf '%s\n' "No removable media found" >&2
+    exit 1
+  fi
+
+  if command -v wofi >/dev/null 2>&1; then
+    selection="$(printf '%s\n' "$entries" | format_menu | wofi --dmenu --prompt Media --width 720 --height 360)"
+  else
+    printf '%s\n' "$entries" | format_menu >&2
+    printf '%s' "selection: " >&2
+    IFS= read -r selection
+  fi
+
+  [ -n "$selection" ] || exit 0
+  set -- $selection
+  action="$1"
+  dev="$2"
+
+  case "$action" in
+    mount)
+      udisksctl mount -b "$dev"
+      mountpoint="$(lsblk -prno MOUNTPOINTS "$dev" | sed -n '1p')"
+      [ -n "$mountpoint" ] && exec yazi "$mountpoint"
+      ;;
+    open)
+      mountpoint="$(lsblk -prno MOUNTPOINTS "$dev" | sed -n '1p')"
+      [ -n "$mountpoint" ] || {
+        printf '%s\n' "$dev is not mounted" >&2
+        exit 1
+      }
+      exec yazi "$mountpoint"
+      ;;
+    unmount)
+      exec udisksctl unmount -b "$dev"
+      ;;
+    power-off)
+      exec udisksctl power-off -b "$dev"
+      ;;
+    *)
+      usage
+      ;;
+  esac
+}
+
+case "${1:-menu}" in
+  list) list_devices ;;
+  menu) choose ;;
+  *) usage ;;
+esac

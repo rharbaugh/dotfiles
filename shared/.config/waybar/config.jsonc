@@ -64,7 +64,7 @@
         "format-connected": "󰂱",
         "format-no-controller": "",
         "tooltip-format": "Devices connected: {num_connections}",
-        "on-click": "dotfiles-popup Bluetooth bluetui"
+        "on-click": "popup Bluetooth bluetui"
     },
     "network": {
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
@@ -78,8 +78,8 @@
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
         "spacing": 1,
-        "on-click": "dotfiles-popup Wi-Fi dotfiles-tui nmtui",
-        "on-click-right": "dotfiles-popup Wi-Fi dotfiles-tui nmtui"
+        "on-click": "popup Wi-Fi tui-theme nmtui",
+        "on-click-right": "popup Wi-Fi tui-theme nmtui"
     },
     "pulseaudio": {
         "format": "{icon}",
@@ -99,6 +99,7 @@
         },
         "tooltip-format": "Playing at {volume}%",
         "scroll-step": 5,
+        "on-click": "popup Audio wiremix",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "power-profiles-daemon": {
@@ -110,13 +111,14 @@
             "performance": "",
             "balanced": "",
             "power-saver": ""
-        }
+        },
+        "on-click": "power-profile-menu"
     },
     "cpu": {
         "interval": 5,
         "format": "󰍛",
         "tooltip-format": "CPU {usage}%",
-        "on-click": "dotfiles-popup Activity btop"
+        "on-click": "popup Activity btop"
     },
     "memory": {
         "interval": 5,
@@ -156,6 +158,6 @@
         "format": "󰐥",
         "tooltip": true,
         "tooltip-format": "Power",
-        "on-click": "dotfiles-toggle-power-menu"
+        "on-click": "toggle-power-menu"
     }
 }

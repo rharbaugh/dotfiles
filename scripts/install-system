@@ -23,6 +23,10 @@ packages=(
   dconf
   fd
   ffmpeg
+  ffmpegthumbnailer
+  firefox
+  framework-system
+  fwupd
   fzf
   grim
   ghostty
@@ -42,8 +46,10 @@ packages=(
   hyprshutdown
   hyprsunset
   ipp-usb
+  imv
   jq
   keychain
+  libreoffice-fresh
   mako
   man-db
   man-pages
@@ -70,6 +76,7 @@ packages=(
   qt5ct
   qt6-wayland
   qt6ct
+  rbw
   sane
   sane-airscan
   shikane
@@ -88,6 +95,7 @@ packages=(
   waybar
   wget
   wireguard-tools
+  wiremix
   wireplumber
   wl-clipboard
   woff2-font-awesome
@@ -97,11 +105,15 @@ packages=(
   xdg-desktop-portal-hyprland
   eza
   ripgrep
+  udisks2
+  usbutils
   yazi
   yt-dlp
   yubikey-manager
   zsh
   zoxide
+  zathura
+  zathura-pdf-mupdf
 )
 
 pacman -S --needed "${packages[@]}"
@@ -115,6 +127,7 @@ install -Dm644 "$repo/system/etc/greetd/config.toml" /etc/greetd/config.toml
 install -Dm644 "$repo/system/etc/vtrgb-dotfiles" /etc/vtrgb-dotfiles
 install -Dm644 "$repo/system/etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf" /etc/systemd/sleep.conf.d/10-dotfiles-hibernate.conf
 install -Dm644 "$repo/system/etc/systemd/system/greetd.service.d/10-dotfiles-vtrgb.conf" /etc/systemd/system/greetd.service.d/10-dotfiles-vtrgb.conf
+install -Dm644 "$repo/system/etc/systemd/system/battery-limit.service" /etc/systemd/system/battery-limit.service
 
 systemctl daemon-reload
 setvtrgb /etc/vtrgb-dotfiles || true
@@ -125,6 +138,7 @@ systemctl enable --now cups.service
 systemctl enable --now avahi-daemon.service
 systemctl enable --now cups-browsed.service
 systemctl enable --now greetd.service
+systemctl enable --now battery-limit.service
 
 if systemctl list-unit-files sddm.service >/dev/null 2>&1; then
   systemctl disable --now sddm.service || true

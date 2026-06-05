@@ -1,0 +1,10 @@
+[Unit]
+Description=Apply Framework battery charge limit
+ConditionPathExists=/usr/bin/framework_tool
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/framework_tool --charge-limit 80
+
+[Install]
+WantedBy=multi-user.target

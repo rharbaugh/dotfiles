@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Neovim
+GenericName=Text Editor
+Exec=ghostty -e nvim %F
+Terminal=false
+Type=Application
+MimeType=text/plain;text/markdown;application/json;application/x-yaml;application/xml;
+Categories=Utility;TextEditor;

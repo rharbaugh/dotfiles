@@ -2,7 +2,7 @@
 set -eu
 
 usage() {
-  printf '%s\n' "usage: dotfiles-popup TITLE COMMAND [ARG ...]" >&2
+  printf '%s\n' "usage: popup TITLE COMMAND [ARG ...]" >&2
   exit 2
 }
 

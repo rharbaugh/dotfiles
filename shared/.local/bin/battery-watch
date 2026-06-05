@@ -1,0 +1,62 @@
+#!/usr/bin/env sh
+set -eu
+
+interval="${BATTERY_WATCH_INTERVAL:-60}"
+last_state="ok"
+
+notify() {
+  command -v notify-send >/dev/null 2>&1 || return 0
+  notify-send -u "$1" "$2" "$3"
+}
+
+battery_dir() {
+  for supply in /sys/class/power_supply/*; do
+    [ -r "$supply/type" ] || continue
+    [ "$(cat "$supply/type")" = "Battery" ] || continue
+    printf '%s\n' "$supply"
+    return 0
+  done
+  return 1
+}
+
+while :; do
+  battery="$(battery_dir || true)"
+
+  if [ -n "$battery" ] && [ -r "$battery/capacity" ]; then
+    capacity="$(cat "$battery/capacity")"
+    status="Unknown"
+    [ -r "$battery/status" ] && status="$(cat "$battery/status")"
+
+    state="ok"
+    urgency="normal"
+    title=""
+    body=""
+
+    if [ "$status" = "Discharging" ]; then
+      if [ "$capacity" -le 5 ]; then
+        state="empty"
+        urgency="critical"
+        title="Battery critically low"
+        body="${capacity}% remaining"
+      elif [ "$capacity" -le 10 ]; then
+        state="critical"
+        urgency="critical"
+        title="Battery low"
+        body="${capacity}% remaining"
+      elif [ "$capacity" -le 20 ]; then
+        state="warning"
+        urgency="normal"
+        title="Battery warning"
+        body="${capacity}% remaining"
+      fi
+    fi
+
+    if [ "$state" != "$last_state" ] && [ "$state" != "ok" ]; then
+      notify "$urgency" "$title" "$body"
+    fi
+
+    last_state="$state"
+  fi
+
+  sleep "$interval"
+done

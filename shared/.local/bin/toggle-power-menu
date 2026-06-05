@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+set -eu
+
+if pgrep -u "$(id -u)" -f "[p]ower-menu" >/dev/null 2>&1; then
+  pkill -u "$(id -u)" -f "[p]ower-menu"
+  exit 0
+fi
+
+if command -v wofi >/dev/null 2>&1; then
+  exec power-menu
+fi
+
+exec popup Power power-menu

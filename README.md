@@ -37,7 +37,7 @@ Apply Neovim config as the user:
 stow neovim
 ```
 
-The root install script enables NetworkManager, Bluetooth, CUPS, Avahi, cups-browsed, and greetd. It does not install iwd or Impala because NetworkManager is the source of truth for Wi-Fi and WireGuard.
+The root install script enables NetworkManager, Bluetooth, CUPS, Avahi, cups-browsed, greetd, and the Framework battery charge-limit service. It does not install iwd or Impala because NetworkManager is the source of truth for Wi-Fi and WireGuard.
 
 ## Theme Workflow
 
@@ -83,6 +83,7 @@ The generator writes:
 - Waybar colors: `shared/.config/waybar/theme.css`
 - Wofi colors: `shared/.config/wofi/style.css`
 - Yazi colors: `shared/.config/yazi/theme.toml`
+- Zathura colors: `shared/.config/zathura/zathurarc`
 - Hyprland Lua theme: `shared/.config/hypr/lua/theme.lua`
 - Hyprlock colors: `shared/.config/hypr/ecosystem/hyprlock-theme.conf`
 - Mako notifications: `shared/.config/mako/config`
@@ -122,7 +123,7 @@ If stale links exist in `~/.config/hypr` after a layout change, run:
 
 ## Launcher
 
-Wofi is the launcher and lightweight menu target. `SUPER+D` and `SUPER+Space` run `wofi --show drun`. `dotfiles-power-menu` uses `wofi --dmenu`, with a plain shell menu inside the existing Ghostty popup retained as a fallback.
+Wofi is the launcher and lightweight menu target. `SUPER+D` and `SUPER+Space` run `wofi --show drun`. `power-menu` uses `wofi --dmenu`, with a plain shell menu inside the existing Ghostty popup retained as a fallback.
 
 ## Network
 
@@ -144,7 +145,21 @@ Command-line control:
 nmcli
 ```
 
-Waybar Wi-Fi actions and `SUPER+SHIFT+W` launch `nmtui` in a floating Ghostty popup through `dotfiles-popup` and `dotfiles-tui`, which applies the current theme to newt-based TUIs via `NEWT_COLORS`.
+Waybar Wi-Fi actions and `SUPER+SHIFT+W` launch `nmtui` in a floating Ghostty popup through `popup` and `tui-theme`, which applies the current theme to newt-based TUIs via `NEWT_COLORS`.
+
+## Secrets
+
+Bitwarden is terminal-first through `rbw`:
+
+```sh
+rbw login
+rbw unlock
+rbw list
+rbw get example.com
+rbw get example.com | wl-copy
+```
+
+Browser extensions, SSH credentials, GPG, and git credential helpers are not wired to Bitwarden yet.
 
 ## Shell
 
@@ -160,6 +175,42 @@ Expected SSH identity names:
 When either file exists, new interactive Zsh shells add it to the keychain-managed SSH agent so Git can use it. Core aliases include `v` for `nvim`, `ls` as `eza -al --group-directories-first --icons=auto`, and `cat` through `bat --plain --paging=never`.
 
 Shell navigation and search use `zoxide`, `fzf`, `ripgrep`, and `fd` when installed. Ripgrep defaults live in `shared/.config/ripgrep/ripgreprc`. Yazi keeps its normal `yazi` command, and `yy` launches Yazi with shell integration so the parent shell changes to Yazi's final directory on exit.
+
+## Files And Viewers
+
+Yazi is the terminal file manager. `SUPER+E` opens it in Ghostty, and `yy` keeps shell-directory handoff for interactive terminal sessions.
+
+Default openers:
+
+- PDFs, ePub, and XPS: Zathura.
+- Images: imv.
+- Audio and video: mpv.
+- Office documents: LibreOffice.
+- Text, Markdown, JSON, YAML, TOML, and XML: Neovim.
+- Directories: Yazi.
+
+XDG MIME defaults live in `shared/.config/mimeapps.list`. `mailto` and `magnet` are intentionally unset until mail and torrent tools are chosen.
+
+Removable media is explicit rather than automounted:
+
+```sh
+media
+media list
+```
+
+The menu lists removable devices, mounts with `udisksctl`, opens mounted filesystems in Yazi, and can unmount or power off the device. `SUPER+SHIFT+M` opens the media menu in a floating terminal.
+
+## Browser
+
+Firefox is the default browser baseline. Browser work should keep these decisions explicit:
+
+- Firefox is the default handler for `http` and `https`.
+- Native Wayland and XDG portals are expected under Hyprland.
+- Dark mode comes from GTK settings and the portal GTK settings backend.
+- PDFs opened as files go to Zathura; browser-internal PDF behavior remains Firefox default.
+- Downloads should open through the MIME defaults above.
+- Screen sharing should be validated through `xdg-desktop-portal-hyprland`.
+- Chromium is not part of the baseline unless a compatibility need appears.
 
 ## Neovim
 
@@ -195,7 +246,34 @@ Hypridle is configured for:
 - When plugged in: stop at locked plus display off; do not suspend or hibernate.
 - 15 minutes after a battery suspend: hibernate via systemd sleep settings.
 
-Power actions are centralized in `dotfiles-power`. The TUI-style floating power menu is `dotfiles-power-menu`, and `dotfiles-toggle-power-menu` is used by both `SUPER+SHIFT+P` and the Waybar power icon.
+Power actions are centralized in `power`. The TUI-style floating power menu is `power-menu`, and `toggle-power-menu` is used by both `SUPER+SHIFT+P` and the Waybar power icon.
+
+Power profiles use `power-profiles-daemon`. The Waybar power profile icon opens `power-profile-menu`, which selects `balanced`, `power-saver`, or `performance`.
+
+Framework battery charge limiting uses the official `framework_tool` from `framework-system`, not sysfs charge threshold files. The default daily cap is 80%, applied by `battery-limit.service` at boot:
+
+```sh
+battery-limit status
+battery-limit 80
+battery-limit 100
+battery-limit power
+```
+
+Use `battery-limit 100` as a travel override before needing maximum runtime. `battery-watch` starts with Hyprland and sends low-battery notifications while discharging.
+
+Firmware checks use `fwupd` manually:
+
+```sh
+fwupdmgr refresh
+fwupdmgr get-updates
+fwupdmgr update
+```
+
+## Bluetooth And Audio
+
+Bluetooth is handled by BlueZ. `SUPER+SHIFT+B` and the Waybar Bluetooth icon open `bluetui`; `bluetoothctl` remains the terminal fallback for pairing and trust/connect flows.
+
+Audio is PipeWire through WirePlumber. Media keys use `wpctl`, and `SUPER+SHIFT+A` or the Waybar audio icon opens `wiremix` for sink/source selection and levels.
 
 ## Screenshots
 

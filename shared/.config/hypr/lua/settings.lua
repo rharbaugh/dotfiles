@@ -9,7 +9,7 @@ function settings.tui(command, title)
         return settings.terminal .. " -e " .. command
     end
 
-    return "dotfiles-popup " .. title .. " " .. command
+    return "popup " .. title .. " " .. command
 end
 
 return settings

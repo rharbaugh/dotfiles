@@ -7,6 +7,23 @@ cd "$repo"
 stow -D shared
 stow shared
 
+old_links=(
+  ".local/bin/dotfiles-apply-theme"
+  ".local/bin/dotfiles-popup"
+  ".local/bin/dotfiles-tui"
+  ".local/bin/dotfiles-power"
+  ".local/bin/dotfiles-power-menu"
+  ".local/bin/dotfiles-toggle-power-menu"
+  ".local/bin/dotfiles-screenshot-region"
+)
+
+for rel in "${old_links[@]}"; do
+  link="$HOME/$rel"
+  if [[ -L "$link" && "$(readlink "$link")" == *".dotfiles/shared/$rel" ]]; then
+    rm "$link"
+  fi
+done
+
 echo "Restowed shared package."
 
 if [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]] && command -v hyprctl >/dev/null 2>&1; then

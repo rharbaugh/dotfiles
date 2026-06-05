@@ -65,7 +65,9 @@ Treat theming as a system-level concern, not a per-program afterthought.
 - Avoid one-off styling unless there is a clear reason.
 - When possible, define theme values in a reusable location and import them into tool-specific configs.
 
-The canonical theme source is `shared/.config/dotfiles/theme.json`. Regenerate app-specific theme fragments with `dotfiles-apply-theme` after changing it. The Neovim submodule uses `neanias/everforest-nvim` through LazyVim to match the active Everforest desktop theme.
+The canonical theme source is `shared/.config/dotfiles/theme.json`. Regenerate app-specific theme fragments with `theme-render` after changing it. The Neovim submodule uses `neanias/everforest-nvim` through LazyVim to match the active Everforest desktop theme.
+
+User-facing helper commands and scripts should not use a `dotfiles-` prefix. Prefer short, descriptive command names that make sense when run directly from a shell or launcher.
 
 Hyprland compositor configuration should stay Lua-only: keep `hyprland.lua` as the entrypoint and place required modules under `shared/.config/hypr/lua/`. Plain `.conf` files under `shared/.config/hypr/` are only for separate Hypr ecosystem programs that require them, such as hypridle and hyprsunset.
 

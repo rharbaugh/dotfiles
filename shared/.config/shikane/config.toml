@@ -8,6 +8,9 @@
 # shikane chooses the most exact profile whose outputs match every connected
 # display. The docked profile should become more exact than roaming once the
 # Dell serial is filled in.
+#
+# Roaming profiles place the Framework panel on the left and external displays
+# to its right. The eDP-1 logical width is 2256 / 1.3333333333333333 = 1692.
 
 [[profile]]
 name = "laptop"
@@ -40,12 +43,14 @@ name = "roaming-1-external"
     search = "n=eDP-1"
     enable = true
     mode = "best"
+    position = "0,0"
     scale = 1.3333333333333333
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
     enable = true
     mode = "best"
+    position = "1692,0"
     scale = 1.0
 
 [[profile]]
@@ -55,18 +60,21 @@ name = "roaming-2-external"
     search = "n=eDP-1"
     enable = true
     mode = "best"
+    position = "0,0"
     scale = 1.3333333333333333
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
     enable = true
     mode = "best"
+    position = "1692,0"
     scale = 1.0
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
     enable = true
     mode = "best"
+    position = "3612,0"
     scale = 1.0
 
 [[profile]]
@@ -76,22 +84,26 @@ name = "roaming-3-external"
     search = "n=eDP-1"
     enable = true
     mode = "best"
+    position = "0,0"
     scale = 1.3333333333333333
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
     enable = true
     mode = "best"
+    position = "1692,0"
     scale = 1.0
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
     enable = true
     mode = "best"
+    position = "3612,0"
     scale = 1.0
 
     [[profile.output]]
     search = "n/^(DP|HDMI-A)-[0-9]+$"
     enable = true
     mode = "best"
+    position = "5532,0"
     scale = 1.0

@@ -75,7 +75,7 @@ case "${1:-}" in
     fi
     ;;
   *)
-    printf '%s\n' "usage: dotfiles-power {lock|logout|restart|sleep|hibernate|shutdown|idle-suspend}" >&2
+    printf '%s\n' "usage: power {lock|logout|restart|sleep|hibernate|shutdown|idle-suspend}" >&2
     exit 2
     ;;
 esac

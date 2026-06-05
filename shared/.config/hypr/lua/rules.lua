@@ -29,7 +29,7 @@ hl.window_rule({
 
 hl.window_rule({
     name  = "float-tui-popups",
-    match = { title = "^(Bluetooth|Wi-Fi|Activity)$" },
+    match = { title = "^(Audio|Bluetooth|Media|Wi-Fi|Activity)$" },
 
     float = true,
     size  = "80% 80%",

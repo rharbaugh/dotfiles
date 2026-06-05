@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+set -eu
+
+choose_with_shell() {
+  printf '%s\n' "[ power profile ]"
+  select profile in balanced power-saver performance; do
+    [ -n "$profile" ] && printf '%s\n' "$profile" && return
+  done
+}
+
+choose_with_wofi() {
+  printf '%s\n' balanced power-saver performance | wofi --dmenu --prompt "Power Profile" --width 360 --height 220
+}
+
+if ! command -v powerprofilesctl >/dev/null 2>&1; then
+  printf '%s\n' "power-profile-menu requires powerprofilesctl" >&2
+  exit 1
+fi
+
+if command -v wofi >/dev/null 2>&1; then
+  profile="$(choose_with_wofi)"
+else
+  profile="$(choose_with_shell)"
+fi
+
+[ -n "$profile" ] || exit 0
+powerprofilesctl set "$profile"
